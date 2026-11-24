@@ -52,6 +52,13 @@ pick up a new version by copying `dist/` again.
 
 ## 5. Version history (what & why)
 
+### 2026-11-24 — 0.3.4 — Favicon for the demo pages
+
+The demo pages on GitHub Pages had no favicon, so browsers showed a blank tab icon and
+requested a missing `/favicon.ico`. Added `demo/favicon.svg` (a white page with a
+download arrow on a red square) and linked it from every demo page. Library code is
+unchanged; only the version stamp in `dist/` moves.
+
 ### 2026-11-24 — 0.3.3 — Versioned file links
 
 After 0.3.2 went live, Sev's browser still ran 0.3.1: GitHub Pages sends
