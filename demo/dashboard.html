@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Household energy, November</title>
+<style>
+  :root {
+    --bg: oklch(0.17 0.02 260);
+    --panel: oklch(0.22 0.025 265);
+    --line: oklch(0.32 0.03 265);
+    --ink: oklch(0.95 0.01 260);
+    --muted: oklch(0.72 0.03 260);
+    --violet: oklch(0.68 0.19 290);
+    --teal: oklch(0.78 0.13 185);
+    --amber: oklch(0.82 0.15 80);
+    --rose: oklch(0.7 0.18 15);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 28px; border-bottom: 1px solid var(--line); }
+  .top a { color: var(--muted); text-decoration: none; }
+  .top button { font: inherit; font-weight: 600; padding: 9px 16px; border-radius: 8px; border: 0; color: #fff; cursor: pointer;
+    background: linear-gradient(135deg, oklch(0.52 0.2 290), oklch(0.48 0.19 320)); }
+  .top button[aria-busy="true"] { opacity: .6; cursor: progress; }
+  main { padding: 28px; max-width: 1200px; margin: 0 auto; }
+  header.title { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  h1 { margin: 0; font-size: 1.9rem; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 4px 0 0; }
+  .pill { padding: 6px 12px; border-radius: 999px; background: oklch(0.3 0.06 185 / 0.6); color: var(--teal); font-weight: 600; font-size: .85rem; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 14px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .kpi .label { color: var(--muted); font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; }
+  .kpi .value { font-size: 2rem; font-weight: 700; margin: 6px 0 2px; font-variant-numeric: tabular-nums; }
+  .up { color: var(--rose); } .down { color: var(--teal); }
+  .kpi.hero { background: radial-gradient(120% 140% at 0% 0%, oklch(0.45 0.16 290 / 0.55), transparent 60%), var(--panel); }
+  .row { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 14px; }
+  @media (max-width: 800px) { .row { grid-template-columns: 1fr; } }
+  h2 { margin: 0 0 12px; font-size: 1rem; color: var(--muted); font-weight: 600; }
+  svg { display: block; width: 100%; height: auto; }
+  .legend { display: flex; gap: 16px; color: var(--muted); font-size: .85rem; margin-top: 10px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
+  td.num, th.num { text-align: right; }
+  .bar { height: 8px; border-radius: 4px; background: oklch(0.3 0.03 265); overflow: hidden; }
+  .bar span { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--teal), var(--violet)); }
+  .tip { border-left: 3px solid var(--amber); }
+  .tip strong { color: var(--amber); }
+</style>
+</head>
+<body>
+<div class="top" data-pdfbot-ignore>
+  <a href="./">← pdfbot demos</a>
+  <button data-pdfbot="main" data-pdfbot-orientation="landscape" data-pdfbot-filename="energy-november">Export PDF</button>
+</div>
+
+<main>
+  <header class="title">
+    <div>
+      <h1>Household energy · November</h1>
+      <p class="sub">Electricity and gas for the flat, 1 to 24 November, compared with October.</p>
+    </div>
+    <span class="pill">On track for budget</span>
+  </header>
+
+  <section class="kpis">
+    <div class="card kpi hero"><div class="label">Spent so far</div><div class="value">£86.40</div><div class="down">↓ 12% on October</div></div>
+    <div class="card kpi"><div class="label">Electricity</div><div class="value">212 kWh</div><div class="down">↓ 8%</div></div>
+    <div class="card kpi"><div class="label">Gas</div><div class="value">341 kWh</div><div class="up">↑ 19% (colder week)</div></div>
+    <div class="card kpi"><div class="label">Solar export</div><div class="value">14 kWh</div><div class="down">↓ 61%, short days</div></div>
+  </section>
+
+  <section class="row">
+    <div class="card">
+      <h2>Daily use, kWh</h2>
+      <svg viewBox="0 0 720 240" role="img" aria-label="Daily electricity and gas use">
+        <defs>
+          <linearGradient id="gas" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="oklch(0.68 0.19 290)" stop-opacity=".55"/>
+            <stop offset="1" stop-color="oklch(0.68 0.19 290)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="oklch(0.32 0.03 265)" stroke-width="1">
+          <line x1="40" y1="30" x2="710" y2="30"/><line x1="40" y1="90" x2="710" y2="90"/>
+          <line x1="40" y1="150" x2="710" y2="150"/><line x1="40" y1="210" x2="710" y2="210"/>
+        </g>
+        <g fill="oklch(0.72 0.03 260)" font-size="12" font-family="system-ui, sans-serif">
+          <text x="8" y="34">30</text><text x="8" y="94">20</text><text x="8" y="154">10</text><text x="14" y="214">0</text>
+          <text x="40" y="232">1 Nov</text><text x="352" y="232">12 Nov</text><text x="664" y="232">24 Nov</text>
+        </g>
+        <path d="M40 120 L69 126 L98 110 L127 104 L156 118 L185 96 L214 92 L243 100 L272 84 L301 80 L330 88 L359 70 L388 64 L417 74 L446 60 L475 52 L504 66 L533 58 L562 46 L591 40 L620 54 L649 44 L678 38 L707 48 L707 210 L40 210 Z" fill="url(#gas)"/>
+        <path d="M40 120 L69 126 L98 110 L127 104 L156 118 L185 96 L214 92 L243 100 L272 84 L301 80 L330 88 L359 70 L388 64 L417 74 L446 60 L475 52 L504 66 L533 58 L562 46 L591 40 L620 54 L649 44 L678 38 L707 48" fill="none" stroke="oklch(0.68 0.19 290)" stroke-width="2.5"/>
+        <path d="M40 168 L69 172 L98 160 L127 166 L156 170 L185 158 L214 150 L243 162 L272 166 L301 158 L330 154 L359 162 L388 168 L417 160 L446 156 L475 150 L504 164 L533 168 L562 158 L591 152 L620 160 L649 164 L678 156 L707 158" fill="none" stroke="oklch(0.78 0.13 185)" stroke-width="2.5"/>
+      </svg>
+      <div class="legend"><span><i style="background: var(--violet)"></i>Gas</span><span><i style="background: var(--teal)"></i>Electricity</span></div>
+    </div>
+    <div class="card">
+      <h2>Where the electricity went</h2>
+      <table>
+        <tr><td>Heat pump dryer</td><td class="num">54 kWh</td></tr>
+        <tr><td colspan="2"><div class="bar"><span style="width: 100%"></span></div></td></tr>
+        <tr><td>Kitchen</td><td class="num">47 kWh</td></tr>
+        <tr><td colspan="2"><div class="bar"><span style="width: 87%"></span></div></td></tr>
+        <tr><td>Always on</td><td class="num">39 kWh</td></tr>
+        <tr><td colspan="2"><div class="bar"><span style="width: 72%"></span></div></td></tr>
+        <tr><td>Office and screens</td><td class="num">31 kWh</td></tr>
+        <tr><td colspan="2"><div class="bar"><span style="width: 57%"></span></div></td></tr>
+        <tr><td>Everything else</td><td class="num">41 kWh</td></tr>
+        <tr><td colspan="2"><div class="bar"><span style="width: 76%"></span></div></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="card">
+      <h2>Bills this year</h2>
+      <table>
+        <thead><tr><th>Month</th><th class="num">Electricity</th><th class="num">Gas</th><th class="num">Total</th><th class="num">vs budget</th></tr></thead>
+        <tbody>
+          <tr><td>July</td><td class="num">£41.10</td><td class="num">£12.30</td><td class="num">£53.40</td><td class="num down">−£26.60</td></tr>
+          <tr><td>August</td><td class="num">£44.80</td><td class="num">£11.90</td><td class="num">£56.70</td><td class="num down">−£23.30</td></tr>
+          <tr><td>September</td><td class="num">£47.20</td><td class="num">£21.40</td><td class="num">£68.60</td><td class="num down">−£11.40</td></tr>
+          <tr><td>October</td><td class="num">£52.90</td><td class="num">£45.20</td><td class="num">£98.10</td><td class="num up">+£18.10</td></tr>
+          <tr><td>November (so far)</td><td class="num">£38.70</td><td class="num">£47.70</td><td class="num">£86.40</td><td class="num">£80 budget</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card tip">
+      <h2>Worth a look</h2>
+      <p><strong>Always on is 18% of electricity.</strong> That is about 55 W around the clock: the router, the fridge, two chargers and the speaker that never sleeps. Turning the speaker off at night would save roughly £14 a year.</p>
+      <p>Gas jumped in the cold snap from 17 November. The thermostat schedule still starts heating at 05:30, an hour before anyone is up.</p>
+    </div>
+  </section>
+</main>
+<script src="../dist/pdfbot.js" defer></script>
+</body>
+</html>

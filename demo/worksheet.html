@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arbeitsblatt: Brüche addieren</title>
+<style>
+  :root { --sun: #fff7d6; --orange: #ff8a3d; --pink: #e0457b; --ink: #2b2140; --sky: #dff1ff; --mint: #d9f7e8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--sun); color: var(--ink); font: 18px/1.5 ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", system-ui, sans-serif; }
+  .nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; }
+  .nav a { color: var(--ink); }
+  #slot button { font: inherit; font-weight: 700; padding: 10px 18px; border: 3px solid var(--ink); border-radius: 14px; background: var(--orange); color: var(--ink); cursor: pointer; box-shadow: 3px 3px 0 var(--ink); }
+  #slot button[aria-busy="true"] { opacity: .6; cursor: progress; }
+  main { max-width: 820px; margin: 0 auto; padding: 12px 24px 56px; }
+  .banner { display: flex; gap: 20px; align-items: center; padding: 22px 26px; border: 3px solid var(--ink); border-radius: 22px; background: linear-gradient(120deg, #c2410c, #be185d); color: #fff; box-shadow: 5px 5px 0 var(--ink); }
+  .banner h1 { margin: 0; font-size: 2.2rem; line-height: 1.1; }
+  .banner p { margin: 4px 0 0; font-size: 1.05rem; }
+  .who { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin: 22px 0; font-weight: 600; }
+  .who span { display: block; border-bottom: 2px dashed var(--ink); height: 1.8em; }
+  section { margin: 26px 0; padding: 20px 24px; border: 3px solid var(--ink); border-radius: 20px; background: #fff; break-inside: avoid; }
+  section.tip { background: var(--sky); }
+  section.bonus { background: var(--mint); }
+  h2 { margin: 0 0 12px; font-size: 1.35rem; }
+  h2 .n { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; margin-right: 8px; border-radius: 50%; background: var(--ink); color: #fff; font-size: .9em; }
+  .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.15; margin: 0 3px; font-weight: 700; }
+  .frac span:first-child { border-bottom: 2.5px solid currentColor; padding: 0 4px; }
+  .sums { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px 26px; font-size: 1.4rem; }
+  .sum { display: flex; align-items: center; gap: 6px; }
+  .box { display: inline-block; width: 3.2em; height: 2.4em; border: 2.5px solid var(--ink); border-radius: 10px; vertical-align: middle; background: #fffdf5; }
+  .pizza { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+  .pizza svg { width: 150px; height: 150px; flex: none; }
+  .stars { font-size: 1.6rem; letter-spacing: .2em; }
+  footer { text-align: center; font-size: .9rem; opacity: .75; }
+</style>
+</head>
+<body>
+<div class="nav" data-pdfbot-ignore>
+  <a href="./">← pdfbot demos</a>
+  <span id="slot"></span>
+</div>
+
+<main id="sheet">
+  <div class="banner">
+    <div style="font-size: 3.4rem; line-height: 1">🍕</div>
+    <div>
+      <h1>Brüche addieren</h1>
+      <p>Arbeitsblatt für die 4. Klasse · Gleiche und verschiedene Nenner</p>
+    </div>
+  </div>
+
+  <div class="who"><div>Name: <span></span></div><div>Datum: <span></span></div></div>
+
+  <section class="tip">
+    <h2>💡 Merke dir</h2>
+    <p>Bei gleichen Nennern addierst du nur die Zähler. Der Nenner bleibt gleich:
+      <span class="frac"><span>1</span><span>4</span></span> +
+      <span class="frac"><span>2</span><span>4</span></span> =
+      <span class="frac"><span>3</span><span>4</span></span>.
+      Bei verschiedenen Nennern musst du zuerst erweitern, bis die Nenner gleich sind.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">1</span>Gleiche Nenner</h2>
+    <div class="sums">
+      <div class="sum"><span class="frac"><span>1</span><span>5</span></span>+<span class="frac"><span>2</span><span>5</span></span>= <span class="box"></span></div>
+      <div class="sum"><span class="frac"><span>3</span><span>8</span></span>+<span class="frac"><span>4</span><span>8</span></span>= <span class="box"></span></div>
+      <div class="sum"><span class="frac"><span>2</span><span>9</span></span>+<span class="frac"><span>5</span><span>9</span></span>= <span class="box"></span></div>
+      <div class="sum"><span class="frac"><span>1</span><span>6</span></span>+<span class="frac"><span>1</span><span>6</span></span>= <span class="box"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>Verschiedene Nenner</h2>
+    <div class="sums">
+      <div class="sum"><span class="frac"><span>1</span><span>2</span></span>+<span class="frac"><span>1</span><span>4</span></span>= <span class="box"></span></div>
+      <div class="sum"><span class="frac"><span>1</span><span>3</span></span>+<span class="frac"><span>1</span><span>6</span></span>= <span class="box"></span></div>
+      <div class="sum"><span class="frac"><span>2</span><span>5</span></span>+<span class="frac"><span>3</span><span>10</span></span>= <span class="box"></span></div>
+      <div class="sum"><span class="frac"><span>3</span><span>4</span></span>+<span class="frac"><span>1</span><span>8</span></span>= <span class="box"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>Pizza für alle</h2>
+    <div class="pizza">
+      <svg viewBox="0 0 160 160" role="img" aria-label="Pizza in acht Stücke geteilt, drei davon gegessen">
+        <circle cx="80" cy="80" r="74" fill="#f4b860" stroke="#2b2140" stroke-width="4"/>
+        <circle cx="80" cy="80" r="62" fill="#e8553e"/>
+        <path d="M80 80 L80 18 A62 62 0 0 1 123.8 36.2 Z M80 80 L123.8 36.2 A62 62 0 0 1 142 80 Z M80 80 L142 80 A62 62 0 0 1 123.8 123.8 Z" fill="#fff7d6"/>
+        <g fill="#fff3c4"><circle cx="58" cy="60" r="7"/><circle cx="52" cy="104" r="7"/><circle cx="86" cy="122" r="6"/><circle cx="40" cy="82" r="5"/></g>
+        <g stroke="#2b2140" stroke-width="3"><line x1="80" y1="6" x2="80" y2="154"/><line x1="6" y1="80" x2="154" y2="80"/><line x1="27.7" y1="27.7" x2="132.3" y2="132.3"/><line x1="132.3" y1="27.7" x2="27.7" y2="132.3"/></g>
+      </svg>
+      <div>
+        <p>Die Pizza hat 8 Stücke. Ben isst <span class="frac"><span>2</span><span>8</span></span>, Mia isst <span class="frac"><span>1</span><span>8</span></span>.</p>
+        <p>Welcher Bruchteil der Pizza ist schon weg? <span class="box"></span></p>
+        <p>Wie viel ist noch übrig? <span class="box"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bonus">
+    <h2>⭐ Bonus für Profis</h2>
+    <p>Lena läuft <span class="frac"><span>3</span><span>4</span></span> km zur Schule und <span class="frac"><span>1</span><span>2</span></span> km zum Bäcker. Wie weit läuft sie insgesamt? Schreib die Antwort als Bruch und als Kommazahl.</p>
+    <p class="stars">☆ ☆ ☆</p>
+  </section>
+
+  <footer>Beispiel-Arbeitsblatt für die pdfbot-Demo · Viel Spaß! 😊</footer>
+</main>
+
+<script src="../dist/pdfbot.js"></script>
+<script>
+  // Made with pdfbot.button(), which returns a ready-made button element.
+  document.getElementById('slot').append(
+    pdfbot.button({ label: 'Als PDF speichern', target: '#sheet', filename: 'arbeitsblatt-brueche', pageNumbers: true }),
+  );
+</script>
+</body>
+</html>

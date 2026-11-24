@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "demo/dashboard.html"
+        ],
+        "createdAt": "2026-11-24T02:55:14.918Z",
+        "reason": "Claude decided: demo/ pages are test fixtures that deliberately imitate common real-world page styles so pdfbot is tested against what apps actually look like"
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "demo/article.html"
+        ],
+        "createdAt": "2026-11-24T02:55:14.947Z",
+        "reason": "Claude decided: demo/ pages are test fixtures that deliberately imitate common real-world page styles so pdfbot is tested against what apps actually look like"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "demo/article.html"
+        ],
+        "createdAt": "2026-11-24T02:55:14.976Z",
+        "reason": "Claude decided: demo/ pages are test fixtures that deliberately imitate common real-world page styles so pdfbot is tested against what apps actually look like"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "demo/worksheet.html"
+        ],
+        "createdAt": "2026-11-24T02:55:15.004Z",
+        "reason": "Claude decided: demo/ pages are test fixtures that deliberately imitate common real-world page styles so pdfbot is tested against what apps actually look like"
+      }
+    ]
+  }
+}

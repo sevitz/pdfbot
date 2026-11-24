@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoice 2026-1042</title>
+<style>
+  :root { --navy: #1e3a8a; --ink: #111827; --muted: #6b7280; --line: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #e2e8f0; color: var(--ink); font: 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .tools { display: flex; justify-content: space-between; align-items: center; max-width: 794px; margin: 20px auto 12px; padding: 0 4px; }
+  .tools a { color: #475569; }
+  .tools button { font: inherit; font-weight: 600; padding: 8px 14px; border: 1px solid var(--navy); border-radius: 6px; background: #fff; color: var(--navy); cursor: pointer; }
+  .tools button:disabled { opacity: .6; cursor: progress; }
+  .sheet { position: relative; width: 794px; max-width: 100%; margin: 0 auto 40px; padding: 56px 60px; background: #fff; box-shadow: 0 4px 24px rgb(15 23 42 / 0.12); overflow: hidden; }
+  .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand b { font-size: 20px; letter-spacing: -0.01em; }
+  .brand small { display: block; color: var(--muted); }
+  .meta { text-align: right; }
+  .meta h1 { margin: 0 0 6px; font-size: 30px; font-weight: 300; letter-spacing: .12em; color: var(--navy); }
+  .meta dl { display: grid; grid-template-columns: auto auto; gap: 2px 14px; margin: 0; }
+  .meta dt { color: var(--muted); } .meta dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0 32px; }
+  .parties h2 { margin: 0 0 6px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .parties p { margin: 0; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--navy); padding: 9px 10px; }
+  td { padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td small { color: var(--muted); }
+  .num { text-align: right; white-space: nowrap; }
+  .totals { width: 280px; margin: 18px 0 0 auto; }
+  .totals div { display: flex; justify-content: space-between; padding: 5px 10px; font-variant-numeric: tabular-nums; }
+  .totals .grand { margin-top: 6px; padding: 10px; background: #eff6ff; color: var(--navy); font-weight: 700; font-size: 17px; border-radius: 4px; }
+  .stamp { position: absolute; bottom: 210px; left: 80px; padding: 6px 18px; border: 4px solid #15803d; border-radius: 8px; color: #15803d; font: 800 34px/1 "Helvetica Neue", Arial, sans-serif; letter-spacing: .15em; transform: rotate(-14deg); opacity: .8; }
+  .foot { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .foot b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="tools" data-pdfbot-ignore>
+  <a href="./">← pdfbot demos</a>
+  <button type="button" id="download">Download invoice</button>
+</div>
+
+<div class="sheet" id="invoice">
+  <div class="head">
+    <div class="brand">
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="10" fill="#1e3a8a"/><path d="M12 30 L22 12 L32 30 Z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><circle cx="22" cy="25" r="3" fill="#93c5fd"/></svg>
+      <div><b>Hill Street Tutoring</b><small>Maths and German, ages 8 to 14</small></div>
+    </div>
+    <div class="meta">
+      <h1>INVOICE</h1>
+      <dl><dt>Number</dt><dd>2026-1042</dd><dt>Issued</dt><dd>24 Nov 2026</dd><dt>Due</dt><dd>8 Dec 2026</dd></dl>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div><h2>Billed to</h2><p>The Example Family<br>12 Sample Road<br>London N1 0XX</p></div>
+    <div><h2>For</h2><p>Weekly lessons, November 2026<br>Two pupils, one hour each</p></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Description</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amount</th></tr></thead>
+    <tbody>
+      <tr><td>Maths lesson, fractions and decimals<br><small>3, 10, 17 and 24 November</small></td><td class="num">4</td><td class="num">£38.00</td><td class="num">£152.00</td></tr>
+      <tr><td>German lesson, reading and spelling<br><small>4, 11, 18 and 25 November</small></td><td class="num">4</td><td class="num">£38.00</td><td class="num">£152.00</td></tr>
+      <tr><td>Printed worksheets and marking</td><td class="num">8</td><td class="num">£2.50</td><td class="num">£20.00</td></tr>
+      <tr><td>Sibling discount, 10% of lessons</td><td class="num">1</td><td class="num">−£30.40</td><td class="num">−£30.40</td></tr>
+    </tbody>
+  </table>
+
+  <div class="totals">
+    <div><span>Subtotal</span><span>£293.60</span></div>
+    <div><span>VAT (not registered)</span><span>£0.00</span></div>
+    <div class="grand"><span>Total</span><span>£293.60</span></div>
+  </div>
+
+  <div class="stamp">PAID</div>
+
+  <div class="foot">
+    <div><b>Payment</b><br>Paid by bank transfer on 24 Nov 2026. Thank you.</div>
+    <div><b>Questions</b><br>Reply to the email this came with. Sample invoice for the pdfbot demo; not a real business.</div>
+  </div>
+</div>
+
+<script src="../dist/pdfbot.js"></script>
+<script>
+  // Wired up from JavaScript rather than a data attribute.
+  const button = document.getElementById('download');
+  button.addEventListener('click', async () => {
+    button.disabled = true;
+    button.textContent = 'Preparing…';
+    try {
+      await pdfbot.save({ target: '#invoice', filename: 'invoice-2026-1042', margin: 0 });
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Download invoice';
+    }
+  });
+</script>
+</body>
+</html>

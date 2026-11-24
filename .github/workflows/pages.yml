@@ -1,0 +1,38 @@
+# Publishes the demo pages and the built library to GitHub Pages.
+# Only demo/ and dist/ are published, never the source or docs.
+# Runs by hand for now (Actions tab, "Demo site", Run workflow) until Pages is
+# switched on for this repo; then add a push trigger on demo/** and dist/**.
+name: Demo site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Assemble the site
+        run: |
+          mkdir -p _site
+          cp -R demo dist _site/
+          printf '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=demo/"><title>pdfbot</title><a href="demo/">pdfbot demos</a>\n' > _site/index.html
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

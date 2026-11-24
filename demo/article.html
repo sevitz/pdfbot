@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The quiet life of a borrowed word</title>
+<style>
+  :root { --paper: #f8f3ea; --ink: #241c15; --muted: #6f6253; --rust: #9a3412; --rule: #dccfbc; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 19px/1.65 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+  nav { display: flex; justify-content: space-between; padding: 14px 24px; font: 14px/1 system-ui, sans-serif; }
+  nav a { color: var(--muted); }
+  article { max-width: 860px; margin: 0 auto; padding: 24px 32px 72px; }
+  .kicker { font: 600 13px/1 system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--rust); }
+  h1 { font-size: 3.1rem; line-height: 1.05; margin: 14px 0 16px; font-weight: 600; letter-spacing: -0.015em; }
+  .standfirst { font-size: 1.3rem; line-height: 1.45; color: var(--muted); font-style: italic; margin: 0 0 22px; max-width: 34em; }
+  .byline { font: 14px/1.4 system-ui, sans-serif; color: var(--muted); padding: 12px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
+  .hero { margin: 0 0 28px; }
+  .hero svg { width: 100%; height: auto; display: block; border-radius: 4px; }
+  .hero figcaption { font: 13px/1.4 system-ui, sans-serif; color: var(--muted); margin-top: 8px; }
+  .body { columns: 2 320px; column-gap: 40px; column-rule: 1px solid var(--rule); }
+  .body p { margin: 0 0 1em; text-align: justify; hyphens: auto; }
+  .dropcap { float: left; font-size: 4.6em; line-height: .82; margin: .06em .08em 0 0; color: var(--rust); font-weight: 600; }
+  blockquote { break-inside: avoid; margin: .4em 0 1.2em; padding: .2em 0 .2em 18px; border-left: 3px solid var(--rust); font-size: 1.35rem; line-height: 1.35; font-style: italic; }
+  .ja { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+  sup { font-size: .65em; line-height: 0; }
+  h2 { column-span: all; font-size: 1.5rem; margin: 1.2em 0 .6em; font-weight: 600; }
+  .notes { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--muted); }
+  .notes ol { padding-left: 1.2em; }
+</style>
+</head>
+<body>
+<nav data-pdfbot-ignore><a href="./">← pdfbot demos</a><span>This page uses the floating button, bottom right</span></nav>
+
+<article>
+  <div class="kicker">Language</div>
+  <h1>The quiet life of a borrowed word</h1>
+  <p class="standfirst">Most of the words a child meets in a book arrived in English from somewhere else. Following a few of them home says a lot about how a vocabulary grows.</p>
+  <div class="byline">By the Wordanator team · 9 minute read · Sample text for the pdfbot demo</div>
+
+  <figure class="hero">
+    <svg viewBox="0 0 800 300" role="img" aria-label="Stylised map of trade routes">
+      <rect width="800" height="300" fill="#e9dcc6"/>
+      <path d="M0 220 C120 180 200 240 320 200 S520 120 620 170 S760 150 800 130 L800 300 L0 300 Z" fill="#d6c2a2"/>
+      <path d="M0 250 C140 230 260 270 380 240 S600 190 800 210 L800 300 L0 300 Z" fill="#c9b08a"/>
+      <g fill="none" stroke="#9a3412" stroke-width="2.5" stroke-dasharray="6 7">
+        <path d="M90 140 C220 60 380 70 480 110"/><path d="M480 110 C560 140 640 90 720 70"/><path d="M300 180 C360 150 420 140 480 110"/>
+      </g>
+      <g fill="#9a3412"><circle cx="90" cy="140" r="7"/><circle cx="480" cy="110" r="7"/><circle cx="720" cy="70" r="7"/><circle cx="300" cy="180" r="6"/></g>
+      <g font-family="Georgia, serif" font-size="17" fill="#241c15" font-style="italic">
+        <text x="60" y="122">kayak</text><text x="452" y="94">bazaar</text><text x="690" y="52">tsunami</text><text x="262" y="206">shampoo</text>
+      </g>
+    </svg>
+    <figcaption>Four borrowed words and roughly where they set out from. Illustration drawn in SVG for this demo.</figcaption>
+  </figure>
+
+  <div class="body">
+    <p><span class="dropcap">O</span>pen any children's novel and count the words that were born in English. It will not take long. The ship that is becalmed sits on a word from Greek by way of French; the quay it ties up to came from Old French; even the anchor dropped from it was borrowed from Latin, which had it from Greek before that. English has always been a magpie, and the books children read are full of the shiny things it picked up.</p>
+    <p>That matters for how a child learns them. A borrowed word often arrives with no relatives in the reader's head. <em>Starboard</em> at least contains <em>board</em>; <em>bazaar</em> contains nothing a nine year old already knows. Words like that have to be met several times, in a story that makes them matter, before they settle.</p>
+    <blockquote>A word with no relatives has to be met three or four times before it stays.</blockquote>
+    <p>Some borrowings are so recent you can almost watch them land. <em>Tsunami</em> came into everyday English from Japanese in living memory; in the original it is written <span class="ja">津波</span>, harbour wave, a description so exact that English simply kept it. A child who learns that the word means harbour wave tends to remember both the word and the idea.<sup>1</sup></p>
+    <p>Others have been here so long nobody notices. <em>Shampoo</em> began as a Hindi word for pressing or kneading, came to England with a Bengali entrepreneur who opened a steam bath in Brighton, and spent a century meaning a massage before it settled on hair.<sup>2</sup> Hardly anyone reading a bath-time scene needs to know that, but the few who are told it never forget the word.</p>
+    <h2>What this means for a word list</h2>
+    <p>The practical lesson for a family word list is that borrowed words deserve a little story of their own. The definition says what the word means; a sentence about where it came from gives the child something to hang it on. That is why the quiz grades an answer yellow rather than red when the idea is right but the explanation stops short: the hook is there, and the word is on its way in.</p>
+    <p>It also suggests a game. When a strange word turns up at the dinner table, guess where it came from before looking it up. The guesses are usually wrong, and that is half the fun. <em>Kayak</em> really is from Greenlandic Inuit. <em>Ketchup</em> probably came from a Hokkien word for fish sauce, which surprises almost everyone.</p>
+    <p>Here is a short sentence in Japanese to finish, so that the PDF's text layer has some characters well outside Latin to carry: <span class="ja">言葉は旅をする。</span> Words travel.</p>
+  </div>
+
+  <div class="notes">
+    <ol>
+      <li>The Japanese characters are 津 (harbour) and 波 (wave).</li>
+      <li>The steam bath was Mahomed's Baths, opened on the Brighton seafront in 1814.</li>
+    </ol>
+  </div>
+</article>
+
+<script src="../dist/pdfbot.js" data-pdfbot-auto="article" data-pdfbot-page-numbers="true" defer></script>
+</body>
+</html>

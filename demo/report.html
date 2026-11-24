@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pdfbot demo: Autumn term reading report</title>
+<style>
+  :root { --ink: #1f2933; --muted: #5b6875; --line: #d9dee3; --accent: #0b6e4f; --tint: #eef6f2; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: #fff; }
+  header.bar { position: sticky; top: 0; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 24px; background: var(--ink); color: #fff; }
+  header.bar button { font: inherit; font-weight: 600; padding: 8px 14px; border: 0; border-radius: 6px; background: #fff; color: var(--ink); cursor: pointer; }
+  header.bar button[aria-busy="true"] { opacity: .6; cursor: progress; }
+  main { max-width: 820px; margin: 0 auto; padding: 32px 24px 64px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 4px; }
+  h2 { font-size: 1.3rem; margin: 2em 0 .5em; padding-bottom: 4px; border-bottom: 2px solid var(--accent); }
+  .lede { color: var(--muted); margin: 0 0 24px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .card { padding: 14px 16px; border-radius: 10px; background: var(--tint); border: 1px solid #cfe5db; }
+  .card b { display: block; font-size: 1.7rem; color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { background: #f4f6f8; }
+  td.g { color: #0b6e4f; font-weight: 600; } td.y { color: #9a6700; font-weight: 600; } td.r { color: #b3261e; font-weight: 600; }
+  figure { margin: 24px 0; }
+  figure svg { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
+  figcaption { color: var(--muted); font-size: .9rem; margin-top: 6px; }
+  .note { break-inside: avoid; padding: 14px 16px; border-left: 4px solid var(--accent); background: #f7faf9; margin: 16px 0; }
+  footer { margin-top: 40px; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+
+<header class="bar" data-pdfbot-ignore>
+  <a href="./" style="color:#fff">pdfbot demos</a>
+  <span>
+    <button data-pdfbot="main" data-pdfbot-page-numbers="true">Save report as PDF</button>
+    <button data-pdfbot>Save whole page</button>
+  </span>
+</header>
+
+<main>
+  <h1>Autumn term reading report</h1>
+  <p class="lede">Words met while reading, how often they came up in quizzes, and how the answers were graded. Sample data for the pdfbot demo.</p>
+
+  <div class="cards">
+    <div class="card"><b>184</b>words added this term</div>
+    <div class="card"><b>1,206</b>answers graded</div>
+    <div class="card"><b>71%</b>green on first try</div>
+    <div class="card"><b>23</b>day best streak</div>
+  </div>
+
+  <h2>How the term went</h2>
+  <p>The first half of term was dominated by one long adventure novel, which is where most of the nautical vocabulary came from: <em>starboard</em>, <em>rigging</em>, <em>becalmed</em> and <em>quay</em> all arrived in the same fortnight. Those words were hard at first because none of them turn up in everyday conversation, but they were also the ones that stuck best once they had been met three or four times in the story itself.</p>
+  <p>After half term the reading shifted to shorter non-fiction about volcanoes and the deep sea. The words from those books were more abstract (<em>dormant</em>, <em>pressure</em>, <em>erosion</em>) and the typed answers show it: plenty of yellow grades where the idea was right but the explanation stopped short. A yellow is a good sign, not a bad one. It means the word is on its way in.</p>
+
+  <figure>
+    <svg viewBox="0 0 760 260" role="img" aria-label="Bar chart of green answers per week">
+      <rect width="760" height="260" fill="#fbfcfd"/>
+      <g fill="#0b6e4f">
+        <rect x="40" y="170" width="44" height="60"/><rect x="100" y="150" width="44" height="80"/>
+        <rect x="160" y="158" width="44" height="72"/><rect x="220" y="120" width="44" height="110"/>
+        <rect x="280" y="128" width="44" height="102"/><rect x="340" y="96" width="44" height="134"/>
+        <rect x="400" y="110" width="44" height="120"/><rect x="460" y="80" width="44" height="150"/>
+        <rect x="520" y="70" width="44" height="160"/><rect x="580" y="84" width="44" height="146"/>
+        <rect x="640" y="52" width="44" height="178"/><rect x="700" y="40" width="44" height="190"/>
+      </g>
+      <line x1="30" y1="230" x2="750" y2="230" stroke="#5b6875"/>
+      <text x="40" y="250" font-size="12" fill="#5b6875" font-family="system-ui">Week 1</text>
+      <text x="700" y="250" font-size="12" fill="#5b6875" font-family="system-ui">Week 12</text>
+    </svg>
+    <figcaption>Green answers per week. The dip in week 3 was the school trip.</figcaption>
+  </figure>
+
+  <div class="note"><strong>Reading the grades.</strong> Green means the meaning was explained correctly. Yellow means the idea was close but incomplete. Orange means a related word was described instead. Red means the answer missed, and the word comes back sooner next time.</div>
+
+  <h2>Word by word</h2>
+  <table>
+    <thead><tr><th>Word</th><th>From</th><th>Times asked</th><th>Last grade</th><th>Definition</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <h2 data-pdfbot-break>What comes next</h2>
+  <p>This section starts on a new page because its heading carries <code>data-pdfbot-break</code>. Next term the plan is to mix the two kinds of reading from the start, so that story words and fact words arrive side by side, and to bring back any word that has not been asked for more than three weeks.</p>
+  <p>The quiz will also start offering a hint after a red answer, on the principle that getting a word right with help is more useful than getting it wrong twice. Words that are answered green three times in a row will drop to a slow rotation, so the daily quiz stays short.</p>
+  <div class="note"><strong>One thing to try at home.</strong> When a new word turns up at the dinner table, ask for it in a sentence before asking what it means. Using a word is easier than defining it, and it usually comes first.</div>
+
+  <footer>Generated by the pdfbot demo page. Nothing here is real pupil data. Übung für Brüche: ½ ➗ ¼ = 2.</footer>
+</main>
+
+<script>
+  // Enough table rows to run across several pages, so page breaks get a workout.
+  const words = [
+    ['starboard', 'The Far Shore', 'the right-hand side of a ship when you face the front'],
+    ['rigging', 'The Far Shore', 'the ropes and chains that hold up a ship\'s masts and sails'],
+    ['becalmed', 'The Far Shore', 'stuck at sea because there is no wind to move the sails'],
+    ['quay', 'The Far Shore', 'a stone or concrete platform by the water where boats tie up'],
+    ['dormant', 'Fire Mountains', 'asleep for now but able to wake up again, like a quiet volcano'],
+    ['erosion', 'Fire Mountains', 'the slow wearing away of rock or soil by wind, water or ice'],
+    ['pressure', 'Into the Deep', 'how hard something pushes on something else'],
+    ['bioluminescent', 'Into the Deep', 'able to make its own light, like some deep sea fish do'],
+    ['reluctant', 'The Far Shore', 'not really wanting to do something'],
+    ['summit', 'Fire Mountains', 'the very top of a mountain'],
+  ];
+  const grades = [['Green', 'g'], ['Yellow', 'y'], ['Green', 'g'], ['Red', 'r'], ['Green', 'g']];
+  const rows = document.getElementById('rows');
+  for (let i = 0; i < 60; i++) {
+    const [w, from, def] = words[i % words.length];
+    const [grade, cls] = grades[(i * 7) % grades.length];
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${w}</td><td>${from}</td><td>${3 + (i * 5) % 9}</td><td class="${cls}">${grade}</td><td>${def}</td>`;
+    rows.appendChild(tr);
+  }
+</script>
+<script src="../dist/pdfbot.js" defer></script>
+</body>
+</html>
