@@ -82,6 +82,8 @@ PDF it makes; unit tests only cover the arithmetic.
 - Characters beyond U+FFFF (emoji) get codes from the surrogate block in the text
   layer, with explicit ToUnicode entries. Encoding them as two UTF-16 halves makes
   readers drop them.
+- Each ToUnicode `bfrange` must keep to one first byte (`<4100> <41FF>`). PDFKit drops
+  the whole map otherwise and nothing can be selected in Preview or on iOS.
 - `SLACK` in `core.js` stops touching table rows from pushing a page break upwards
   one row at a time.
 

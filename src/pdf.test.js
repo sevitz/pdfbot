@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { PdfWriter, hexUtf16 } from './pdf.js';
+import { PdfWriter, hexUtf16, toUnicodeCMap } from './pdf.js';
 
 const latin1 = (bytes) => Buffer.from(bytes).toString('latin1');
 
@@ -47,6 +47,15 @@ test('the file is framed as a PDF and every xref offset points at its object', a
     assert.ok(text.slice(offset).startsWith(`${i + 1} 0 obj\n`), `object ${i + 1}`);
   });
   assert.match(text, /\/Type \/Pages \/Count 2 /);
+});
+
+test('every ToUnicode range keeps to one first byte, as the spec and PDFKit require', () => {
+  const text = toUnicodeCMap(new Map([['🍕', 0xd800]]));
+  assert.match(text, /<D800> <D83CDF55>/);
+  const ranges = [...text.matchAll(/<([0-9A-F]{4})> <([0-9A-F]{4})> <[0-9A-F]+>/g)];
+  assert.ok(ranges.length >= 248, `found ${ranges.length} ranges`);
+  for (const [, from, to] of ranges) assert.equal(from.slice(0, 2), to.slice(0, 2), `${from}..${to}`);
+  for (const block of text.matchAll(/(\d+) beginbf(range|char)/g)) assert.ok(Number(block[1]) <= 100);
 });
 
 test('characters beyond U+FFFF get one code each, mapped back to the full character', () => {

@@ -58,7 +58,7 @@ export async function deflate(bytes) {
 // would otherwise be split into two surrogate halves that readers throw away,
 // so each one gets a code from the surrogate block (never a real character on
 // its own) with an explicit entry mapping it to the full character.
-function toUnicodeCMap(astral) {
+export function toUnicodeCMap(astral) {
   const lines = [
     '/CIDInit /ProcSet findresource begin',
     '12 dict begin',
@@ -69,11 +69,21 @@ function toUnicodeCMap(astral) {
     '1 begincodespacerange',
     '<0000> <FFFF>',
     'endcodespacerange',
-    '2 beginbfrange',
-    '<0000> <D7FF> <0000>',
-    '<E000> <FFFF> <E000>',
-    'endbfrange',
   ];
+  // Identity for every code outside the surrogate block. The spec only allows
+  // a range whose start and end share their first byte, and macOS PDFKit
+  // (Preview, iOS) drops the whole map if a range breaks that rule, leaving
+  // nothing to select. So: one range per first byte, 100 ranges per block.
+  const ranges = [];
+  for (let hi = 0; hi < 256; hi++) {
+    if (hi >= 0xd8 && hi <= 0xdf) continue;
+    const h = hi.toString(16).padStart(2, '0').toUpperCase();
+    ranges.push(`<${h}00> <${h}FF> <${h}00>`);
+  }
+  for (let i = 0; i < ranges.length; i += 100) {
+    const chunk = ranges.slice(i, i + 100);
+    lines.push(`${chunk.length} beginbfrange`, ...chunk, 'endbfrange');
+  }
   const entries = [...astral].map(([char, code]) =>
     `<${code.toString(16).toUpperCase()}> <${hexUtf16(char)}>`);
   for (let i = 0; i < entries.length; i += 100) {

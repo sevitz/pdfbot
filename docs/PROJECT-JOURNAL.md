@@ -52,6 +52,16 @@ pick up a new version by copying `dist/` again.
 
 ## 5. Version history (what & why)
 
+### 2026-11-24 — 0.3.2 — Text selectable again in Preview and on iOS
+
+Sev could not select text in PDFs from the demos. Since 0.3.0 the text layer's
+ToUnicode map split identity into `<0000> <D7FF>` and `<E000> <FFFF>`. The spec only
+allows a range whose two ends share their first byte; macOS PDFKit (Preview, Safari,
+iOS) then discarded the whole font's text, leaving 5 characters on a page instead of
+hundreds. Poppler (`pdftotext`) is lenient, which is why the tests still passed. Now
+one range per first byte, 100 per block, with a unit test for the rule. Verified with
+PDFKit itself: click a word, drag across a phrase, and emoji, on three demo PDFs.
+
 ### 2026-11-24 — 0.3.1 — Public repo, demos on GitHub Pages
 
 The worksheet's pizza question used real family names. Swapped for Ben and Mia, since
@@ -159,6 +169,9 @@ maintained fork that handles those, so pdfbot uses it directly and does its own 
 - **html2canvas `x`/`y` are relative to the element**, not the document.
 - **The app's launch.json preview only works once the session is in this folder.** The
   first session started elsewhere and ran the demo server by hand.
+- **Test the text layer with PDFKit, not only poppler.** Poppler accepts CMaps that
+  break the spec; PDFKit silently drops them. `PDFDocument(url:).page(at:0).string`
+  and `selection(from:to:)` from a small Swift script is the real check for Preview.
 - **Multi-column text over a page break** is sliced across both columns, so reading
   order across pages is column 1 top, column 2 top, then both bottoms. Inherent in
   paging a picture of the screen.
