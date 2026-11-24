@@ -65,6 +65,276 @@
         ],
         "createdAt": "2026-11-24T03:52:57.287Z",
         "reason": "Claude decided: static false positive; .exploded padding is clamp(20px, 3vw, var(--pitch)), measured 20 to 28px live, no text within 8px of any boxed edge"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "demo/article.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.493Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "demo/article.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.520Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "demo/article.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.546Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "demo/invoice.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.571Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "demo/invoice.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.599Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "demo/invoice.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.624Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "demo/worksheet.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.652Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "demo/worksheet.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.681Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "demo/worksheet.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.708Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "demo/report.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.736Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "demo/report.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.763Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "demo/report.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.788Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "demo/dashboard.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.814Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "demo/dashboard.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.841Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "demo/dashboard.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.869Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "demo/index.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.896Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "demo/index.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.922Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "demo/index.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.948Z",
+        "reason": "Claude decided: deliberately varied demo fixture in its own style; DESIGN.md scopes only demo/explainer.html"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.973Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-11-24T03:58:31.999Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.027Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "tiny-text",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.052Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.078Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.106Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.134Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "tiny-text",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.162Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/challenger-brick.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.188Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/challenger-brick.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.213Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/challenger-brick.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.238Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "tiny-text",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/challenger-brick.html"
+        ],
+        "createdAt": "2026-11-24T03:58:32.265Z",
+        "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
       }
     ]
   }

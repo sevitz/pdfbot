@@ -10,45 +10,268 @@
       "note": "Catalog challenger chosen by the user for the explainer (over the assigned Timetable Booklet). Not a seeded world."
     },
     "colorMeta": {
-      "sky": { "role": "neutral", "displayName": "Instruction Sky", "canonical": "#aee1ff", "tonalRamp": ["#0b2a3d", "#164a69", "#2a6f96", "#4b97c2", "#77bde6", "#93d3f7", "#aee1ff", "#e3f4ff"] },
-      "sky-deep": { "role": "neutral", "displayName": "Deep Sky", "canonical": "#93d3f7", "tonalRamp": ["#0a2738", "#154562", "#28698f", "#468fba", "#6db5df", "#93d3f7", "#bde5fb", "#e8f6fe"] },
-      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#111111", "tonalRamp": ["#111111", "#262626", "#3d3d3d", "#595959", "#7a7a7a", "#a1a1a1", "#c9c9c9", "#efefef"] },
-      "ink-soft": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#1d3a52", "tonalRamp": ["#0d1c29", "#1d3a52", "#2f5677", "#45759c", "#6994b8", "#93b4cf", "#bfd3e4", "#e8f0f7"] },
-      "brick": { "role": "secondary", "displayName": "Brick Red", "canonical": "#e53935", "tonalRamp": ["#3d0c0b", "#6e1715", "#a1221f", "#c62828", "#e53935", "#f15a56", "#f47a76", "#fde3e2"] },
-      "brick-deep": { "role": "secondary", "displayName": "Shaded Brick", "canonical": "#c62828", "tonalRamp": ["#330a0a", "#5e1313", "#8e1d1d", "#c62828", "#dd4a4a", "#ea7777", "#f4a9a9", "#fce4e4"] },
-      "yellow": { "role": "tertiary", "displayName": "Build Yellow", "canonical": "#ffcd00", "tonalRamp": ["#3d3000", "#6b5500", "#9c7c00", "#d9a800", "#ffcd00", "#ffdb4d", "#ffe580", "#fff6cc"] },
-      "blue": { "role": "primary", "displayName": "Accent Blue", "canonical": "#147bd1", "tonalRamp": ["#05213a", "#0a3c66", "#0f5fa3", "#147bd1", "#3f97e0", "#73b4ea", "#a9d1f3", "#e2f0fc"] },
-      "blue-deep": { "role": "primary", "displayName": "Deep Accent Blue", "canonical": "#0f5fa3", "tonalRamp": ["#041a2e", "#082f52", "#0f5fa3", "#2a7cc4", "#5598d4", "#82b5e2", "#b3d2ef", "#e4f0fa"] },
-      "plate": { "role": "neutral", "displayName": "Plate Grey", "canonical": "#d9d9d9", "tonalRamp": ["#2b2b2b", "#4a4a4a", "#6e6e6e", "#a9a9a9", "#bdbdbd", "#c9c9c9", "#d9d9d9", "#f2f2f2"] },
-      "paper": { "role": "neutral", "displayName": "Paper White", "canonical": "#ffffff", "tonalRamp": ["#1a1a1a", "#3b3b3b", "#626262", "#8c8c8c", "#b5b5b5", "#d9d9d9", "#f2f2f2", "#ffffff"] }
+      "sky": {
+        "role": "neutral",
+        "displayName": "Instruction Sky",
+        "canonical": "#aee1ff",
+        "tonalRamp": [
+          "#0b2a3d",
+          "#164a69",
+          "#2a6f96",
+          "#4b97c2",
+          "#77bde6",
+          "#93d3f7",
+          "#aee1ff",
+          "#e3f4ff"
+        ]
+      },
+      "sky-deep": {
+        "role": "neutral",
+        "displayName": "Deep Sky",
+        "canonical": "#93d3f7",
+        "tonalRamp": [
+          "#0a2738",
+          "#154562",
+          "#28698f",
+          "#468fba",
+          "#6db5df",
+          "#93d3f7",
+          "#bde5fb",
+          "#e8f6fe"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#111111",
+        "tonalRamp": [
+          "#111111",
+          "#262626",
+          "#3d3d3d",
+          "#595959",
+          "#7a7a7a",
+          "#a1a1a1",
+          "#c9c9c9",
+          "#efefef"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#1d3a52",
+        "tonalRamp": [
+          "#0d1c29",
+          "#1d3a52",
+          "#2f5677",
+          "#45759c",
+          "#6994b8",
+          "#93b4cf",
+          "#bfd3e4",
+          "#e8f0f7"
+        ]
+      },
+      "brick": {
+        "role": "secondary",
+        "displayName": "Brick Red",
+        "canonical": "#e53935",
+        "tonalRamp": [
+          "#3d0c0b",
+          "#6e1715",
+          "#a1221f",
+          "#c62828",
+          "#e53935",
+          "#f15a56",
+          "#f47a76",
+          "#fde3e2"
+        ]
+      },
+      "brick-deep": {
+        "role": "secondary",
+        "displayName": "Shaded Brick",
+        "canonical": "#c62828",
+        "tonalRamp": [
+          "#330a0a",
+          "#5e1313",
+          "#8e1d1d",
+          "#c62828",
+          "#dd4a4a",
+          "#ea7777",
+          "#f4a9a9",
+          "#fce4e4"
+        ]
+      },
+      "yellow": {
+        "role": "tertiary",
+        "displayName": "Build Yellow",
+        "canonical": "#ffcd00",
+        "tonalRamp": [
+          "#3d3000",
+          "#6b5500",
+          "#9c7c00",
+          "#d9a800",
+          "#ffcd00",
+          "#ffdb4d",
+          "#ffe580",
+          "#fff6cc"
+        ]
+      },
+      "blue": {
+        "role": "primary",
+        "displayName": "Accent Blue",
+        "canonical": "#147bd1",
+        "tonalRamp": [
+          "#05213a",
+          "#0a3c66",
+          "#0f5fa3",
+          "#147bd1",
+          "#3f97e0",
+          "#73b4ea",
+          "#a9d1f3",
+          "#e2f0fc"
+        ]
+      },
+      "blue-deep": {
+        "role": "primary",
+        "displayName": "Deep Accent Blue",
+        "canonical": "#0f5fa3",
+        "tonalRamp": [
+          "#041a2e",
+          "#082f52",
+          "#0f5fa3",
+          "#2a7cc4",
+          "#5598d4",
+          "#82b5e2",
+          "#b3d2ef",
+          "#e4f0fa"
+        ],
+        "note": "The primary button ground (white on it is 6.5:1), links, code strings, the diagram's text layer words."
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate Grey",
+        "canonical": "#d9d9d9",
+        "tonalRamp": [
+          "#2b2b2b",
+          "#4a4a4a",
+          "#6e6e6e",
+          "#a9a9a9",
+          "#bdbdbd",
+          "#c9c9c9",
+          "#d9d9d9",
+          "#f2f2f2"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#3b3b3b",
+          "#626262",
+          "#8c8c8c",
+          "#b5b5b5",
+          "#d9d9d9",
+          "#f2f2f2",
+          "#ffffff"
+        ]
+      },
+      "blue-ink": {
+        "role": "primary",
+        "displayName": "Blue Ink",
+        "canonical": "#0b4a80",
+        "note": "Primary button hover. White on it is 8.6:1."
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The one page headline." },
-      "numeral": { "displayName": "Step Numeral", "purpose": "Step numbers at the left of each build step; 4.5rem under 900px." },
-      "headline": { "displayName": "Headline", "purpose": "Section heads; the closing panel uses clamp(1.9rem, 3.6vw, 2.8rem)." },
-      "title": { "displayName": "Title", "purpose": "Step titles; panel titles at 1.3rem." },
-      "title-sm": { "displayName": "Call-out Title", "purpose": "Call-out titles with a right-set 1x count." },
-      "lede": { "displayName": "Lede", "purpose": "The single opening paragraph, max 34em." },
-      "body": { "displayName": "Body", "purpose": "Reading text; steps cap at 38em, section intros at 46em." },
-      "label": { "displayName": "Label", "purpose": "Uppercase table headers; inventory title at 0.95rem; piece captions in system sans 700 at 0.8rem." },
-      "code": { "displayName": "Code", "purpose": "Code in parts, wrapped, never scrolled; inline code at 0.88em." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "The one page headline."
+      },
+      "numeral": {
+        "displayName": "Step Numeral",
+        "purpose": "Step numbers at the left of each build step; 4.5rem under 900px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads; the closing panel uses clamp(1.9rem, 3.6vw, 2.8rem)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Step titles; panel titles at 1.3rem."
+      },
+      "title-sm": {
+        "displayName": "Call-out Title",
+        "purpose": "Call-out titles with a right-set 1x count."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "The single opening paragraph, max 34em."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text; steps cap at 38em, section intros at 46em."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase table headers; inventory title at 0.95rem; piece captions in system sans 700 at 0.8rem."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Code in parts, wrapped, never scrolled; inline code at 0.88em."
+      }
     },
     "fonts": [
-      { "family": "Archivo", "source": "demo/fonts/archivo-latin-wght-normal.woff2", "weights": "100 900", "licence": "SIL Open Font Licence (demo/fonts/ARCHIVO-OFL.txt)", "display": "swap" }
+      {
+        "family": "Archivo",
+        "source": "demo/fonts/archivo-latin-wght-normal.woff2",
+        "weights": "100 900",
+        "licence": "SIL Open Font Licence (demo/fonts/ARCHIVO-OFL.txt)",
+        "display": "swap"
+      }
     ],
     "patterns": [
-      { "name": "stud-ruling", "value": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='2.3' fill='%23147bd1' fill-opacity='0.24'/%3E%3C/svg%3E\")", "size": "28px 28px", "purpose": "Stud grid on the diagram board; 22px on pieces." },
-      { "name": "stud-ruling-faint", "value": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='2.3' fill='%23147bd1' fill-opacity='0.15'/%3E%3C/svg%3E\")", "size": "28px 28px", "purpose": "Stud grid on the whole sheet (.sheet, not the saved element)." }
+      {
+        "name": "stud-ruling",
+        "value": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='2.3' fill='%23147bd1' fill-opacity='0.24'/%3E%3C/svg%3E\")",
+        "size": "28px 28px",
+        "purpose": "Stud grid on the diagram board; 22px on pieces."
+      },
+      {
+        "name": "stud-ruling-faint",
+        "value": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='2.3' fill='%23147bd1' fill-opacity='0.15'/%3E%3C/svg%3E\")",
+        "size": "28px 28px",
+        "purpose": "Stud grid on the whole sheet (.sheet, not the saved element)."
+      }
     ],
-    "keyline": { "value": "2px solid #111111", "purpose": "Every piece, panel, step, button and the masthead rule." },
+    "keyline": {
+      "value": "2px solid #111111",
+      "purpose": "Every piece, panel, step, button and the masthead rule."
+    },
     "shadows": [],
     "motion": [
-      { "name": "layer-drop", "value": "transform 1.1s cubic-bezier(.16, 1, .3, 1); from translateY(-46px)", "purpose": "The one authored motion: the diagram's text layer drops onto the picture on first scroll into view. Rests in place by default; never armed under reduced motion or when already on screen at load; reset on pdfbot:start." },
-      { "name": "state-change", "value": "background-color .15s ease-out, transform .15s ease-out", "purpose": "Button and demo-tile hover; press moves down 1px." },
-      { "name": "smooth-scroll", "value": "scroll-behavior: smooth", "purpose": "In-page links; auto under prefers-reduced-motion." }
+      {
+        "name": "layer-drop",
+        "value": "transform 1.1s cubic-bezier(.16, 1, .3, 1); from translateY(-46px)",
+        "purpose": "The one authored motion: the diagram's text layer drops onto the picture on first scroll into view. Rests in place by default; never armed under reduced motion or when already on screen at load; reset on pdfbot:start."
+      },
+      {
+        "name": "state-change",
+        "value": "background-color .15s ease-out, transform .15s ease-out",
+        "purpose": "Button and demo-tile hover; press moves down 1px."
+      },
+      {
+        "name": "smooth-scroll",
+        "value": "scroll-behavior: smooth",
+        "purpose": "In-page links; auto under prefers-reduced-motion."
+      }
     ],
     "breakpoints": [
-      { "name": "single-column", "value": "900px", "purpose": "Below this every grid is one column, masthead nav hides, numerals drop to 4.5rem." }
+      {
+        "name": "single-column",
+        "value": "900px",
+        "purpose": "Below this every grid is one column, masthead nav hides, numerals drop to 4.5rem."
+      }
     ],
     "states": {
       "focus": "outline: 3px solid #147bd1; outline-offset: 3px; border-radius: 4px",
@@ -144,13 +367,41 @@
       "A \"1x\" piece count on every part and call-out."
     ],
     "rules": [
-      { "name": "The Colour Has A Job Rule", "body": "Each working colour means one thing: red is the new piece, yellow is inventory or hover, blue is an action or the text layer, grey is already built. A colour used outside its job is a bug.", "section": "colors" },
-      { "name": "The Two Sky Rule", "body": "Surfaces are sky (paper, steps) or white (pieces that hold reading). Deep sky is reserved for the one diagram board.", "section": "colors" },
-      { "name": "The Heavy Numeral Rule", "body": "Numbers that count something (step numbers, \"1x\" piece counts) are set in Archivo at 800 or more. Reading text never is.", "section": "typography" },
-      { "name": "The Wrap Not Scroll Rule", "body": "Code wraps (white-space: pre-wrap, overflow-wrap: anywhere) so every character lands on the paper and in the text layer; no horizontal scrollers.", "section": "typography" },
-      { "name": "The Stud Pitch Rule", "body": "Vertical rhythm is counted in studs (28px). New spacing is a multiple or a clean fraction of the pitch.", "section": "layout" },
-      { "name": "The Drawn Depth Rule", "body": "Things look solid because they are drawn as bricks, never because a shadow sits under a box.", "section": "elevation" },
-      { "name": "The One Keyline Rule", "body": "Every piece wears 2px solid ink and a 10px corner. A box without the keyline is not a piece and should not look like one.", "section": "shapes" }
+      {
+        "name": "The Colour Has A Job Rule",
+        "body": "Each working colour means one thing: red is the new piece, yellow is inventory or hover, blue is an action or the text layer, grey is already built. A colour used outside its job is a bug.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Sky Rule",
+        "body": "Surfaces are sky (paper, steps) or white (pieces that hold reading). Deep sky is reserved for the one diagram board.",
+        "section": "colors"
+      },
+      {
+        "name": "The Heavy Numeral Rule",
+        "body": "Numbers that count something (step numbers, \"1x\" piece counts) are set in Archivo at 800 or more. Reading text never is.",
+        "section": "typography"
+      },
+      {
+        "name": "The Wrap Not Scroll Rule",
+        "body": "Code wraps (white-space: pre-wrap, overflow-wrap: anywhere) so every character lands on the paper and in the text layer; no horizontal scrollers.",
+        "section": "typography"
+      },
+      {
+        "name": "The Stud Pitch Rule",
+        "body": "Vertical rhythm is counted in studs (28px). New spacing is a multiple or a clean fraction of the pitch.",
+        "section": "layout"
+      },
+      {
+        "name": "The Drawn Depth Rule",
+        "body": "Things look solid because they are drawn as bricks, never because a shadow sits under a box.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Keyline Rule",
+        "body": "Every piece wears 2px solid ink and a 10px corner. A box without the keyline is not a piece and should not look like one.",
+        "section": "shapes"
+      }
     ],
     "dos": [
       "Do put every piece on the sky paper with the stud ruling, a 2px ink keyline and a 10px corner.",
