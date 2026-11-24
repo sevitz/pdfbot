@@ -52,6 +52,31 @@ pick up a new version by copying `dist/` again.
 
 ## 5. Version history (what & why)
 
+### 2026-11-24 — 0.3.8 — A big spreadsheet demo
+
+`demo/spreadsheet.html`: a fictional shop chain's sales ledger laid out like a
+spreadsheet (column letters, row numbers, grid lines, a fake formula bar that is ignored).
+A summary sheet (revenue by month and region), six SVG charts (stacked columns, two line
+charts, a donut, a scatter of all 1,200 orders, a top ten bar chart), then 1,200 order
+lines over 14 columns, then a product sheet. Revenue cells carry data bars and margin %
+cells a red to green colour scale, both as cell backgrounds. Generated from a fixed seed.
+Saves `#workbook` landscape with page numbers; a second button saves only the summary
+and charts.
+
+The page has about 22,000 elements, past the engine's `STYLE_SCAN_LIMIT` of 4,000, so
+`break-inside` and boxed elements are not read from CSS there. Table rows are still kept
+whole (TR is atomic) and the chart cards use `data-pdfbot-keep`, which works at any size.
+
+Measured (Chromium on a Mac, 1440px window, sheet 1357px wide): 37 landscape pages,
+26.1 MB, 103 seconds. That is about 700 KB and 2.8 seconds a page, against about 210 KB
+and 0.5 seconds a page for the annual report. Size: each landscape page image is 2714 px
+wide at scale 2, and dense grid lines and coloured cells compress worse than prose. An
+earlier 39 page layout saved with `scale: 1.5` came to 19.1 MB instead of 26.2 MB (27%
+smaller). Time: html2canvas clones the whole document for every page, so the cost of
+each page grows with the size of the DOM, not just the page. A cheaper clone for long
+pages (for example, removing rows far outside the page being drawn) is the obvious next
+improvement.
+
 ### 2026-11-24 — 0.3.7 — A 40 page annual report demo, and no more blank tail pages
 
 `demo/annual-report.html`, second card in the gallery after the explainer: the annual
