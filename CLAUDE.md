@@ -45,7 +45,8 @@ small writer, `src/pdf.js`. esbuild bundles everything into `dist/`. Tests are `
   They load `../dist/pdfbot.js` by relative path, so they work both from the dev
   server and on GitHub Pages. Generate a PDF from every one after an engine change.
 - `.github/workflows/pages.yml`: publishes `demo/` and `dist/` (only those) to
-  GitHub Pages. Manual trigger only until Pages is switched on.
+  GitHub Pages on every push to `main` that changes them. Live at
+  https://sevitz.github.io/pdfbot/.
 
 ## Conventions
 

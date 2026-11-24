@@ -1,10 +1,12 @@
 # Publishes the demo pages and the built library to GitHub Pages.
 # Only demo/ and dist/ are published, never the source or docs.
-# Runs by hand for now (Actions tab, "Demo site", Run workflow) until Pages is
-# switched on for this repo; then add a push trigger on demo/** and dist/**.
+# Runs on every push to main that changes either, or by hand from the Actions tab.
 name: Demo site
 
 on:
+  push:
+    branches: [main]
+    paths: ['demo/**', 'dist/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
