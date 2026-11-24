@@ -78,8 +78,10 @@ export function pageGeometry(options, contentWidthPx) {
 //   minFill      a page is never left emptier than this fraction just to keep
 //                something whole; past that we cut straight through instead
 //
-// Returns [{ y, height }] covering 0..totalHeight exactly, with no gaps or
-// overlaps.
+// Returns [{ y, height }] in order, with no overlaps. They cover 0..totalHeight
+// except for blank tails: a last slice before a forced break (or at the very
+// end) that touches no keep is only trailing margin or padding, so it is
+// dropped rather than printed as an empty page.
 export function planPages({ totalHeight, pageHeight, keeps = [], forced = [], minFill = 0.35 }) {
   if (!(totalHeight > 0) || !(pageHeight > 0)) return [];
   const total = Math.ceil(totalHeight);
@@ -99,7 +101,9 @@ export function planPages({ totalHeight, pageHeight, keeps = [], forced = [], mi
     const forcedAt = breaks.find((v) => v > y && v < end);
     if (forcedAt !== undefined) end = forcedAt;
     else if (end < total) end = safeCut(spans, y, end, pageHeight * minFill);
-    pages.push({ y, height: end - y });
+    const tail = end === total || forcedAt !== undefined || breaks.includes(end);
+    const blank = !keeps.some(([a, b]) => b > y + SLACK && a < end - SLACK);
+    if (!(tail && blank && keeps.length > 0 && pages.length > 0)) pages.push({ y, height: end - y });
     y = end;
   }
   return pages;

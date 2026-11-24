@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>pdfbot demo: Fernbrook Instruments annual report 2026</title>
+<style>
+  :root { --ink: #16233a; --muted: #56637a; --line: #d8dde5; --navy: #1d3557; --teal: #2a9d8f; --sand: #e9c46a; --coral: #e76f51; --tint: #eef4f8; --teal-ink: #1c6d63; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: #fff; }
+  header.bar { position: sticky; top: 0; z-index: 2; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 24px; background: var(--navy); color: #fff; }
+  header.bar a { color: #fff; }
+  header.bar button { font: inherit; font-weight: 600; padding: 8px 14px; border: 0; border-radius: 6px; background: #fff; color: var(--navy); cursor: pointer; }
+  header.bar button[aria-busy="true"] { opacity: .6; cursor: progress; }
+  header.bar .ver { opacity: .7; font-size: .85rem; margin-left: 8px; }
+  main { max-width: 820px; margin: 0 auto; padding: 32px 24px 64px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 4px; }
+  h2 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .6em; padding-bottom: 6px; border-bottom: 3px solid var(--teal); color: var(--navy); }
+  h3 { font-size: 1.15rem; margin: 1.6em 0 .4em; color: var(--navy); }
+  section { padding-top: 4px; }
+  .kicker { text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; font-weight: 700; color: var(--teal-ink); margin: 0 0 4px; }
+  .lede { font-size: 1.12rem; color: var(--muted); margin: 0 0 20px; }
+
+  .cover { aspect-ratio: 190 / 268; display: flex; flex-direction: column; justify-content: space-between; padding: 48px 44px; border-radius: 4px; color: #fff;
+           background: linear-gradient(160deg, #1d3557 0%, #1d3557 60%, #2a9d8f 60%, #2a9d8f 73%, #e9c46a 73%, #e9c46a 80%, #f4f1ea 80%); }
+  .cover .name { font-size: 1.1rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .cover h1 { font-size: 3.4rem; line-height: 1.05; margin: 0 0 12px; color: #fff; }
+  .cover .sub { font-size: 1.2rem; max-width: 30ch; opacity: .9; }
+  .cover .foot { color: var(--navy); font-weight: 600; }
+
+  ol.toc { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 40px; }
+  ol.toc li { display: flex; justify-content: space-between; gap: 8px; padding: 7px 0; border-bottom: 1px dotted var(--line); break-inside: avoid; }
+  ol.toc li.part { border: 0; padding-top: 16px; font-weight: 700; text-transform: uppercase; font-size: .8rem; letter-spacing: .06em; color: var(--teal-ink); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 16px 0; }
+  .card { padding: 14px 16px; border-radius: 10px; background: var(--tint); border: 1px solid #d2e0ea; }
+  .card b { display: block; font-size: 1.7rem; color: var(--navy); }
+  .card small { display: block; color: var(--teal-ink); font-weight: 600; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 12px 0 20px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #f1f4f8; }
+  td.n, th.n { text-align: right; white-space: nowrap; }
+  table.tight td, table.tight th { padding: 4px 10px; }
+  tr.sub td { font-weight: 700; border-top: 1.5px solid var(--ink); }
+  tr.head td { font-weight: 700; color: var(--teal-ink); background: #f8fafb; }
+  .pill { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: .8rem; font-weight: 600; }
+  .up { background: #fde8e2; color: #a3361b; } .flat { background: #eef1f4; color: #4a5568; } .down { background: #e2f3ef; color: #1c6d63; }
+
+  figure { margin: 20px 0; break-inside: avoid; }
+  figure svg { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; display: block; }
+  figcaption { color: var(--muted); font-size: .9rem; margin-top: 6px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .quote { font-size: 1.3rem; line-height: 1.4; color: var(--navy); border-left: 4px solid var(--sand); padding: 6px 0 6px 18px; margin: 20px 0; }
+  .note { break-inside: avoid; padding: 14px 16px; border-left: 4px solid var(--teal); background: #f5f9f9; margin: 16px 0; }
+  .board { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .person { display: flex; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; break-inside: avoid; }
+  .person .face { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; }
+  .person p { margin: 4px 0 0; font-size: .9rem; color: var(--muted); }
+  .sig { margin-top: 24px; font-style: italic; }
+  footer { margin-top: 40px; color: var(--muted); font-size: .85rem; }
+</style>
+</head>
+<body>
+
+<header class="bar" data-pdfbot-ignore>
+  <a href="./">pdfbot demos</a>
+  <span>
+    <button data-pdfbot="main" data-pdfbot-page-numbers="true" data-pdfbot-filename="fernbrook-annual-report-2026">Save annual report as PDF</button>
+    <span class="ver" id="version"></span>
+  </span>
+</header>
+
+<main>
+  <div class="cover">
+    <div class="name">Fernbrook Instruments plc</div>
+    <div>
+      <h1>Annual Report and Accounts 2026</h1>
+      <div class="sub">Measuring what matters: instruments, sensors and software for laboratories, hospitals and the natural world.</div>
+    </div>
+    <div class="foot">For the year ended 31 March 2026 · A fictional company, for the pdfbot demo</div>
+  </div>
+
+  <section>
+    <h2 data-pdfbot-break>Contents</h2>
+    <ol class="toc" id="toc"></ol>
+    <div class="note"><strong>About this document.</strong> Fernbrook Instruments is not a real company and every figure here is invented. The page exists to give pdfbot a long, realistic document of about forty pages, so that the time taken and the size of the PDF can be compared with shorter pages. Each chapter heading carries <code>data-pdfbot-break</code>, so every chapter starts on a new page.</div>
+  </section>
+
+  <div id="chapters"></div>
+
+  <footer>Fernbrook Instruments plc is fictional; no figure here describes a real business.</footer>
+</main>
+
+<script>
+// Everything below the contents page is built from the data in this script, so
+// the report can be long without the HTML being unreadable. The text is real DOM
+// text, so it lands in the PDF's text layer like any hand written page.
+
+const C = { navy: '#1d3557', teal: '#2a9d8f', sand: '#e9c46a', coral: '#e76f51', sky: '#8ab6d6', grey: '#9aa5b4' };
+const FONT = 'font-family="system-ui, -apple-system, sans-serif"';
+const fmt = (v, d = 1) => v < 0 ? `(${Math.abs(v).toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g, ',')})` : v.toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const p = (...paras) => paras.map((t) => `<p>${t}</p>`).join('');
+
+// A tiny seeded random source, so the generated notes are the same on every load.
+let seed = 20260331;
+const rnd = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
+
+// ---------- charts (inline SVG; no <use>, which html2canvas draws blank) ----------
+
+function niceMax(v) {
+  const e = 10 ** Math.floor(Math.log10(v)), n = v / e;
+  return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * e;
+}
+function frame(w, h, inner, label) {
+  return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}"><rect width="${w}" height="${h}" fill="#fbfcfd"/>${inner}</svg>`;
+}
+function grid(L, T, pw, ph, top, W, unit) {
+  let g = '';
+  for (let i = 0; i <= 4; i++) {
+    const y = T + ph - (ph * i) / 4;
+    g += `<line x1="${L}" x2="${L + pw}" y1="${y}" y2="${y}" stroke="${i ? '#e4e8ee' : '#56637a'}"/>`;
+    g += `<text x="${L - 8}" y="${y + 4}" text-anchor="end" font-size="12" fill="#56637a" ${FONT}>${unit[0]}${+(top * i / 4).toFixed(1)}${unit[1]}</text>`;
+  }
+  return g;
+}
+function bars(values, labels, { color = C.navy, unit = ['', ''], label = 'Bar chart', highlight = -1, h = 300 } = {}) {
+  const W = 760, H = h, L = 60, R = 20, T = 28, B = 40, pw = W - L - R, ph = H - T - B;
+  const top = niceMax(Math.max(...values));
+  let g = grid(L, T, pw, ph, top, W, unit);
+  const slot = pw / values.length, bw = Math.min(70, slot * 0.62);
+  values.forEach((v, i) => {
+    const bh = (ph * v) / top, x = L + slot * i + (slot - bw) / 2, y = T + ph - bh;
+    g += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="2" fill="${i === highlight ? C.teal : color}"/>`;
+    g += `<text x="${x + bw / 2}" y="${y - 6}" text-anchor="middle" font-size="12" font-weight="600" fill="#16233a" ${FONT}>${unit[0]}${v}${unit[1]}</text>`;
+    g += `<text x="${x + bw / 2}" y="${H - 16}" text-anchor="middle" font-size="12" fill="#56637a" ${FONT}>${labels[i]}</text>`;
+  });
+  return frame(W, H, g, label);
+}
+function grouped(series, labels, { unit = ['', ''], label = 'Grouped bar chart' } = {}) {
+  const W = 760, H = 320, L = 60, R = 20, T = 44, B = 40, pw = W - L - R, ph = H - T - B;
+  const top = niceMax(Math.max(...series.flatMap((s) => s.values)));
+  let g = grid(L, T, pw, ph, top, W, unit);
+  const slot = pw / labels.length, bw = (slot * 0.7) / series.length;
+  labels.forEach((lab, i) => {
+    series.forEach((s, j) => {
+      const v = s.values[i], bh = (ph * v) / top, x = L + slot * i + slot * 0.15 + bw * j, y = T + ph - bh;
+      g += `<rect x="${x}" y="${y}" width="${bw - 3}" height="${bh}" rx="2" fill="${s.color}"/>`;
+    });
+    g += `<text x="${L + slot * i + slot / 2}" y="${H - 16}" text-anchor="middle" font-size="12" fill="#56637a" ${FONT}>${lab}</text>`;
+  });
+  g += legend(series, L, 22);
+  return frame(W, H, g, label);
+}
+function legend(items, x, y) {
+  let g = '';
+  items.forEach((s) => {
+    g += `<rect x="${x}" y="${y - 10}" width="12" height="12" rx="2" fill="${s.color}"/><text x="${x + 18}" y="${y}" font-size="12" fill="#16233a" ${FONT}>${esc(s.name)}</text>`;
+    x += 30 + s.name.length * 7;
+  });
+  return g;
+}
+function lines(series, labels, { unit = ['', ''], label = 'Line chart', min = 0 } = {}) {
+  const W = 760, H = 300, L = 60, R = 24, T = 44, B = 40, pw = W - L - R, ph = H - T - B;
+  const top = niceMax(Math.max(...series.flatMap((s) => s.values)));
+  let g = grid(L, T, pw, ph, top, W, unit);
+  const x = (i) => L + (pw * i) / (labels.length - 1), y = (v) => T + ph - (ph * (v - min)) / (top - min);
+  labels.forEach((lab, i) => { if (i % Math.ceil(labels.length / 8) === 0 || i === labels.length - 1) g += `<text x="${x(i)}" y="${H - 16}" text-anchor="middle" font-size="12" fill="#56637a" ${FONT}>${lab}</text>`; });
+  series.forEach((s) => {
+    g += `<polyline fill="none" stroke="${s.color}" stroke-width="3" stroke-linejoin="round" points="${s.values.map((v, i) => `${x(i)},${y(v)}`).join(' ')}"/>`;
+    s.values.forEach((v, i) => { g += `<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="#fff" stroke="${s.color}" stroke-width="2"/>`; });
+  });
+  g += legend(series, L, 22);
+  return frame(W, H, g, label);
+}
+function donut(parts, { label = 'Donut chart', centre = '' } = {}) {
+  const W = 760, H = 300, cx = 170, cy = 150, r = 115, ri = 68;
+  const total = parts.reduce((a, b) => a + b.value, 0);
+  let a0 = -Math.PI / 2, g = '';
+  parts.forEach((s) => {
+    const a1 = a0 + (2 * Math.PI * s.value) / total, big = a1 - a0 > Math.PI ? 1 : 0;
+    const pt = (a, rr) => `${cx + rr * Math.cos(a)},${cy + rr * Math.sin(a)}`;
+    g += `<path d="M${pt(a0, r)} A${r},${r} 0 ${big} 1 ${pt(a1, r)} L${pt(a1, ri)} A${ri},${ri} 0 ${big} 0 ${pt(a0, ri)} Z" fill="${s.color}" stroke="#fff" stroke-width="2"/>`;
+    a0 = a1;
+  });
+  g += `<text x="${cx}" y="${cy + 8}" text-anchor="middle" font-size="22" font-weight="700" fill="#16233a" ${FONT}>${esc(centre)}</text>`;
+  parts.forEach((s, i) => {
+    const y = 70 + i * 34;
+    g += `<rect x="360" y="${y - 13}" width="16" height="16" rx="3" fill="${s.color}"/>`;
+    g += `<text x="386" y="${y}" font-size="15" fill="#16233a" ${FONT}>${esc(s.name)}</text>`;
+    g += `<text x="720" y="${y}" text-anchor="end" font-size="15" font-weight="700" fill="#16233a" ${FONT}>${Math.round((100 * s.value) / total)}%</text>`;
+  });
+  return frame(W, H, g, label);
+}
+function hbars(items, { unit = ['', ''], label = 'Horizontal bar chart', color = C.teal } = {}) {
+  const W = 760, rowH = 34, T = 20, H = T * 2 + rowH * items.length, L = 230, R = 70, pw = W - L - R;
+  const top = niceMax(Math.max(...items.map((i) => i.value)));
+  let g = '';
+  items.forEach((it, i) => {
+    const y = T + i * rowH, bw = (pw * it.value) / top;
+    g += `<text x="${L - 12}" y="${y + 20}" text-anchor="end" font-size="13" fill="#16233a" ${FONT}>${esc(it.name)}</text>`;
+    g += `<rect x="${L}" y="${y + 6}" width="${pw}" height="20" rx="3" fill="#eef1f5"/><rect x="${L}" y="${y + 6}" width="${bw}" height="20" rx="3" fill="${it.color || color}"/>`;
+    g += `<text x="${L + bw + 8}" y="${y + 21}" font-size="13" font-weight="600" fill="#16233a" ${FONT}>${unit[0]}${it.value}${unit[1]}</text>`;
+  });
+  return frame(W, H, g, label);
+}
+const fig = (svg, caption) => `<figure>${svg}<figcaption>${caption}</figcaption></figure>`;
+
+// ---------- tables ----------
+
+function table(head, rows, numericFrom = 1, cls = '') {
+  const th = head.map((h, i) => `<th class="${i >= numericFrom ? 'n' : ''}">${h}</th>`).join('');
+  const tr = rows.map((r) => {
+    if (r.head) return `<tr class="head"><td colspan="${head.length}">${r.head}</td></tr>`;
+    const cls = r.sub ? ' class="sub"' : '';
+    const cells = (r.cells || r).map((c, i) => `<td class="${i >= numericFrom ? 'n' : ''}">${typeof c === 'number' ? fmt(c) : c}</td>`).join('');
+    return `<tr${cls}>${cells}</tr>`;
+  }).join('');
+  return `<table class="${cls}"><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table>`;
+}
+// Builds a statement from items and works out every subtotal, so the sums add up.
+function statement(groups) {
+  const rows = [], totals = [0, 0];
+  for (const g of groups) {
+    if (g.head) rows.push({ head: g.head });
+    const t = [0, 0];
+    for (const [name, cy, py] of g.items) { rows.push([name, cy, py]); t[0] += cy; t[1] += py; }
+    if (g.total) rows.push({ sub: true, cells: [g.total, t[0], t[1]] });
+    totals[0] += t[0] * (g.sign || 1); totals[1] += t[1] * (g.sign || 1);
+    if (g.running) rows.push({ sub: true, cells: [g.running, totals[0], totals[1]] });
+  }
+  return rows;
+}
+
+// ---------- the five year record, used in several places ----------
+
+const YEARS = ['2022', '2023', '2024', '2025', '2026'];
+const REVENUE = [942, 1018, 1107, 1189, 1284];
+const OPPROFIT = [118, 131, 146, 158, 176];
+const EPS = [52.1, 57.8, 64.3, 69.0, 77.4];
+const DIVIDEND = [21.0, 23.0, 25.5, 27.5, 30.0];
+const MONTHS = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+
+// ---------- segments ----------
+
+const SEGMENTS = [
+  {
+    name: 'Laboratory Systems', color: C.navy, rev: [455, 486], op: [72.4, 79.6], orders: [471, 512], staff: 1940,
+    quarters: [114, 119, 121, 132],
+    intro: 'Bench top analysers, balances and the robotics that move samples between them, sold to pharmaceutical, academic and industrial laboratories.',
+    paras: [
+      'Laboratory Systems grew revenue by 7% to £486 million, with orders ahead of shipments in every quarter. The new Halden series of chromatography systems, launched in September, accounted for almost a fifth of the segment\'s orders in the second half and has the highest gross margin of any platform we sell. Demand from biotechnology customers, which had been soft for two years as funding tightened, recovered steadily from the autumn.',
+      'Academic laboratories remained cautious, particularly in continental Europe, where several large university tenders were deferred into the next financial year. We expect most of those to be awarded rather than cancelled, and our share of the tenders that did close was the highest we have recorded. Industrial customers in food, chemicals and materials testing were steady, and the replacement cycle for balances and pH systems ran broadly as expected.',
+      'Operating margin improved by 0.5 percentage points to 16.4%, helped by a better mix and the full year effect of consolidating two assembly sites into one in Leeds. Freight costs fell back towards pre pandemic levels. Against that, we chose to increase spending on application scientists who work alongside customers, because the evidence is clear that a customer who has had help with method development buys more consumables and renews service contracts more often.',
+      'The priority for the coming year is to bring the Halden software onto the same cloud platform as the rest of the range, so that a laboratory running several Fernbrook instruments can schedule, monitor and audit them from one place. The first release is in beta with eleven customers.',
+    ],
+  },
+  {
+    name: 'Environmental Monitoring', color: C.teal, rev: [291, 312], op: [41.2, 46.8], orders: [305, 339], staff: 1210,
+    quarters: [70, 76, 79, 87],
+    intro: 'Air quality stations, water sensors and the networks that link them, used by regulators, utilities and city authorities.',
+    paras: [
+      'Environmental Monitoring delivered revenue of £312 million, up 7%, and the strongest order intake in the segment\'s history at £339 million. The largest single contract was a seven year agreement to supply and maintain river quality sensors across two water company regions, which will be recognised over its life rather than at signature.',
+      'Air quality remained the larger half of the business. New clean air zones in several cities drove demand for roadside stations, and our low cost particulate sensor, which can be mounted on a lamp post and costs a tenth of a reference station, found a second market with schools and hospitals that want to monitor the air around their own buildings. We shipped more than 9,000 of these units, against 3,400 the year before.',
+      'Margin rose to 15.0%. Recurring revenue from data services, calibration visits and replacement parts now makes up 38% of the segment, and it carries a higher margin than hardware. We think that share can pass 45% within three years as more of the installed base moves to subscription contracts.',
+      'The segment faced one setback. A batch of water sensors supplied to a customer in the Netherlands developed seal failures after eight months in service. We replaced every affected unit at our own cost, changed supplier for the seal, and extended the warranty on the batch. The cost, £2.1 million, is included in the segment result.',
+    ],
+  },
+  {
+    name: 'Medical Diagnostics', color: C.coral, rev: [279, 298], op: [30.1, 34.3], orders: [284, 301], staff: 1080,
+    quarters: [70, 72, 75, 81],
+    intro: 'Point of care analysers and the cartridges they use, sold to hospitals, clinics and community pharmacies.',
+    paras: [
+      'Medical Diagnostics revenue rose 7% to £298 million. Cartridge sales, which follow the number of tests performed rather than the number of analysers sold, grew 11% and are now 64% of the segment. That shift makes the business steadier: an analyser is a capital decision that can be postponed, whereas a test that a doctor needs today is not.',
+      'The installed base of the Cara analyser passed 14,000 units. Uptake in community pharmacies was faster than in hospitals, helped by national schemes that pay pharmacies to run routine checks for blood sugar and cholesterol. Each pharmacy analyser runs fewer tests than a hospital one, but the number of sites is far larger.',
+      'Operating margin improved to 11.5% from 10.8%. The segment still carries the cost of the regulatory work needed to bring three new tests to market, including the first test for a cardiac marker that until now could only be measured in a central laboratory. Approval in the UK and the European Union is expected in the second half of the coming year.',
+      'We closed a small cartridge line in Ireland and moved its volume to our larger plant in Cork, which is now running three shifts. The move was completed without any interruption to supply, which matters a great deal to customers who keep only a few days of stock.',
+    ],
+  },
+  {
+    name: 'Service and Software', color: C.sand, rev: [164, 188], op: [14.3, 15.3], orders: [170, 197], staff: 1420,
+    quarters: [44, 45, 47, 52],
+    intro: 'Maintenance, calibration, training and the software that runs and connects the instruments we and others make.',
+    paras: [
+      'Service and Software was the fastest growing segment, with revenue up 15% to £188 million. More than four fifths of that is contracted in advance, and the renewal rate on service contracts was 93%, the highest since we began measuring it. Customers who buy a service contract at the time of purchase, rather than later, renew more often and buy more consumables, so our sales teams are now paid on the attachment rate as well as on the instrument sale.',
+      'Software revenue, which is reported within this segment, grew 31% to £41 million. The Fernbrook Cloud platform now connects 38,000 instruments, of which roughly a fifth are made by other companies. Opening the platform to other manufacturers was a deliberate choice: a laboratory manager wants one view of every instrument in the room, and would rather we provided it than a competitor.',
+      'Margin fell slightly to 8.1% because we are investing ahead of revenue in the software team and in the data centre capacity the platform needs. We expect margin to rise once the subscription base is larger, as most of the cost of running the platform does not grow with each new customer.',
+      'We trained 2,300 field engineers and customer staff during the year, and opened a new training centre in Singapore to support the growing installed base in South East Asia.',
+    ],
+  },
+];
+
+// ---------- the chapters ----------
+
+const CH = [];
+const chapter = (part, title, html) => CH.push({ part, title, html });
+
+chapter('Strategic report', 'The year at a glance', `
+  <p class="lede">A year of steady growth in every segment, a record order book and a ninth consecutive increase in the dividend.</p>
+  <div class="cards">
+    <div class="card"><b>£1,284m</b>Revenue<small>up 8.0%</small></div>
+    <div class="card"><b>£176.0m</b>Operating profit<small>up 11.4%</small></div>
+    <div class="card"><b>13.7%</b>Operating margin<small>up 0.4 points</small></div>
+    <div class="card"><b>77.4p</b>Earnings per share<small>up 12.2%</small></div>
+    <div class="card"><b>30.0p</b>Dividend per share<small>up 9.1%</small></div>
+    <div class="card"><b>£1,349m</b>Orders received<small>up 9.2%</small></div>
+    <div class="card"><b>£212m</b>Free cash flow<small>up 14.6%</small></div>
+    <div class="card"><b>0.3x</b>Net debt to EBITDA<small>down from 0.8x</small></div>
+  </div>
+  ${fig(bars(REVENUE, YEARS, { unit: ['£', 'm'], highlight: 4, label: 'Revenue by year' }), 'Revenue, £ million, years ended 31 March. Compound growth of 8.0% a year over four years.')}
+  ${fig(lines([{ name: 'Earnings per share (p)', values: EPS, color: C.navy }, { name: 'Dividend per share (p)', values: DIVIDEND, color: C.teal }], YEARS, { label: 'Earnings and dividend per share' }), 'Earnings and dividend per share, pence. The dividend has been covered more than two and a half times in every year shown.')}
+`);
+
+chapter('Strategic report', 'Chair\'s statement', `
+  <p class="kicker">From the Chair</p>
+  <p class="lede">Fernbrook has grown for five years in a row without losing the habits that made it a good business in the first place.</p>
+  ${p(
+    'When I joined the board, Fernbrook was a respected but somewhat inward looking maker of laboratory equipment. It made excellent instruments, but it sold them one at a time, rarely followed up after installation, and left most of the service and software revenue to others. Five years later the business is larger, more profitable and, I would argue, much harder to compete with, because a growing share of what customers pay us comes from the relationship that begins once the instrument is installed.',
+    'This year revenue grew by 8% to £1,284 million and operating profit by 11% to £176 million. Every segment grew. Cash generation was strong, and net debt fell to 0.3 times earnings before interest, tax, depreciation and amortisation, which gives us room both to invest and to return cash to shareholders. The board is recommending a final dividend of 20.5 pence, making 30.0 pence for the year, an increase of 9%.',
+    'The board spent much of its time this year on three subjects. The first was capital allocation: how much to invest in our own products, how much to spend on acquisitions, and how much to return. We agreed a framework, set out in the financial review, that puts organic investment first, keeps leverage below one and a half times, and returns surplus cash through dividends and, where the price is right, share buybacks.',
+    'The second was the quality of our products in the field. The seal failure in a batch of water sensors, described in the segment review, was small in financial terms but it mattered to the customer concerned and it mattered to us. The board asked for, and received, a full review of how supplier changes are tested before they reach production. The changes that came out of that review are now in place across every plant.',
+    'The third was succession. Two of our longest serving non executive directors will retire at the annual general meeting after nine years each. We have appointed two new directors, one with deep experience of software businesses and one who has run a medical device company, and the board is stronger for the mix.',
+  )}
+  <div class="quote">"A growing share of what customers pay us comes from the relationship that begins once the instrument is installed."</div>
+  ${p(
+    'Our people deserve particular thanks. Fernbrook employs a little over 5,600 people in nineteen countries. Engagement scores rose again this year, and voluntary staff turnover fell to 8.9%, the lowest in a decade. Those numbers are not an accident. They reflect a great deal of work by managers at every level to make Fernbrook a place where good engineers and scientists want to stay.',
+    'Finally, I would like to thank our shareholders for their support, and our customers for their trust. We make instruments that tell people whether the water is safe, whether a patient\'s heart is under strain, and whether a new medicine is what it says it is. Getting those answers right is the whole point of the company, and it remains the board\'s first concern.',
+  )}
+  <p class="sig">Margaret Ellison, Chair, 2 June 2026</p>
+`);
+
+chapter('Strategic report', 'Chief executive\'s review', `
+  <p class="kicker">From the Chief Executive</p>
+  <p class="lede">Orders ran ahead of revenue all year, which leaves us starting the new year with the largest order book in our history.</p>
+  ${p(
+    'I am pleased to report another year of progress. Revenue rose 8.0% to £1,284 million, of which 6.9% was organic growth and the rest came from the two small acquisitions we made in the previous year. Operating profit rose 11.4% to £176.0 million, and operating margin widened by 0.4 percentage points to 13.7%, the fourth year in a row of improvement.',
+    'The quarterly pattern was a familiar one, with the final quarter the strongest as customers spent the last of their annual budgets. What was less familiar was the strength of orders in the first half, when several large laboratory customers placed orders for the Halden series before it had shipped. By the end of March the order book stood at £612 million, up 12% on a year earlier.',
+  )}
+  ${fig(bars(SEGMENTS.map((s) => 0).map((_, i) => [298, 312, 322, 352][i]), ['Q1', 'Q2', 'Q3', 'Q4'], { unit: ['£', 'm'], highlight: 3, label: 'Revenue by quarter' }), 'Revenue by quarter, £ million. The fourth quarter included the first full quarter of Halden shipments.')}
+  ${p(
+    'Three things went particularly well. First, the Halden launch: it was on time, on budget, and the early reliability data is the best of any platform we have launched. Second, recurring revenue: service contracts, consumables, cartridges and software subscriptions together grew 12% and now make up 47% of group revenue. Third, cash: free cash flow of £212 million was 120% of profit after tax, helped by better inventory management in our largest plants.',
+    'Two things went less well. The seal failure in the Netherlands cost us money and, more importantly, some of a good customer\'s confidence, which we are working hard to win back. And our expansion in China was slower than we had planned, as public hospital tenders were delayed and local competitors priced aggressively. We have kept our team there but reduced the investment we had planned for the coming year.',
+  )}
+  ${fig(donut(SEGMENTS.map((s) => ({ name: s.name, value: s.rev[1], color: s.color })), { centre: '£1,284m', label: 'Revenue by segment' }), 'Share of group revenue by segment, year ended 31 March 2026.')}
+  ${p(
+    'Looking ahead, our priorities are unchanged. We will keep investing around 5% of revenue in research and development, with a growing share going into software. We will keep moving customers onto service contracts at the point of sale. And we will keep looking for acquisitions that add a technology or a market we cannot build ourselves at a reasonable cost, though we will stay disciplined on price.',
+    'The new financial year has started in line with our expectations. Order intake in April and May was ahead of the same period last year in every segment, and we expect another year of good progress, with organic revenue growth in the range of 5% to 7% and a further modest improvement in margin.',
+  )}
+  <p class="sig">Daniel Okafor, Chief Executive, 2 June 2026</p>
+`);
+
+chapter('Strategic report', 'Our strategy', `
+  <p class="lede">Four priorities, unchanged for three years, and the measures we use to judge them.</p>
+  ${[
+    ['Win the instrument', 'Make the best instrument in each category we choose to compete in, and choose those categories carefully. We would rather lead in twelve categories than follow in forty. This year we left two small categories, handheld refractometers and turbidity meters, where we could not see a path to leadership, and sold the product lines to a specialist.'],
+    ['Keep the customer', 'Attach a service contract, a consumables agreement or a software subscription to every instrument we sell. The lifetime value of a customer who signs a service contract at installation is about three times that of one who does not. The attachment rate this year was 61%, up from 55%.'],
+    ['Connect the laboratory', 'Give customers one place to run, monitor and audit every instrument they own, whoever made it. Fernbrook Cloud connected 38,000 instruments at the year end. Our target is 60,000 by March 2028.'],
+    ['Grow where we are under represented', 'Our share of revenue from Asia is lower than our competitors\'. We are building local teams in India, Singapore and South Korea, with local service centres so that a customer is never more than a day from an engineer.'],
+  ].map(([t, d], i) => `<h3>${i + 1}. ${t}</h3><p>${d}</p>`).join('')}
+  <h3>How we measure progress</h3>
+  ${table(['Measure', 'Target', '2025', '2026', 'Trend'], [
+    ['Organic revenue growth', '5 to 7%', '6.1%', '6.9%', '<span class="pill down">On track</span>'],
+    ['Operating margin', '15% by 2028', '13.3%', '13.7%', '<span class="pill down">On track</span>'],
+    ['Recurring revenue share', 'Over 50%', '45%', '47%', '<span class="pill down">On track</span>'],
+    ['Service attachment rate', '70%', '55%', '61%', '<span class="pill down">On track</span>'],
+    ['Instruments on Fernbrook Cloud', '60,000 by 2028', '27,500', '38,000', '<span class="pill down">On track</span>'],
+    ['Revenue from Asia', '25% of group', '17%', '18%', '<span class="pill flat">Behind</span>'],
+    ['Cash conversion', 'Over 100%', '108%', '120%', '<span class="pill down">Ahead</span>'],
+    ['Return on capital employed', 'Over 18%', '18.4%', '19.6%', '<span class="pill down">Ahead</span>'],
+  ], 9)}
+  ${fig(hbars([
+    { name: 'Laboratory Systems', value: 68 }, { name: 'Environmental Monitoring', value: 62 },
+    { name: 'Medical Diagnostics', value: 57 }, { name: 'Service and Software', value: 49 },
+  ], { unit: ['', '%'], label: 'Service attachment rate by segment' }), 'Service attachment rate at the point of sale, by segment, %.')}
+`);
+
+chapter('Strategic report', 'Our markets', `
+  <p class="lede">The markets we serve grow a little faster than the wider economy, and are less sensitive to it than most.</p>
+  ${p(
+    'We estimate that the markets in which Fernbrook competes were worth about £21 billion in the year, and grew by around 5%. Growth is underpinned by three long term trends: tighter regulation of air and water quality, the rising number of medicines in development, and the move of routine medical tests out of central laboratories and closer to the patient.',
+    'None of these trends depends much on the economic cycle. Regulators do not relax limits on river pollution in a recession, and a pharmaceutical company does not stop testing its products. That is why our revenue fell by only 3% in the worst year of the pandemic and recovered within twelve months.',
+  )}
+  ${fig(grouped([
+    { name: 'Market size 2026 (£bn)', values: [8.2, 5.1, 6.0, 1.7], color: C.navy },
+    { name: 'Expected size 2030 (£bn)', values: [9.8, 6.6, 7.5, 2.6], color: C.teal },
+  ], ['Laboratory', 'Environmental', 'Diagnostics', 'Software'], { label: 'Market size by segment' }), 'Estimated size of the markets we serve, £ billion, now and in 2030. Source: company estimates.')}
+  ${p(
+    'Competition varies by market. In laboratory instruments we compete with four or five large global companies, each with a broader range than ours, and we win by being better in the categories we choose. In environmental monitoring the market is more fragmented, and we are one of only two companies with a full range from low cost sensors to reference stations. In diagnostics we compete with much larger companies, and our advantage is a small, fast analyser designed for places without trained laboratory staff.',
+    'Software is the newest market for us and the most crowded. Many companies, large and small, offer laboratory software. Our advantage is that we already have the instruments in the room, and the trust of the people who run them.',
+  )}
+  ${fig(lines([
+    { name: 'Fernbrook', values: [100, 108, 117, 126, 136], color: C.navy },
+    { name: 'Market', values: [100, 105, 110, 116, 122], color: C.grey },
+  ], YEARS, { label: 'Fernbrook revenue against market growth', min: 80 }), 'Fernbrook revenue against the market, indexed to 100 in 2022.')}
+  ${table(['Region', 'Revenue 2026 £m', 'Share', 'Growth'], [
+    ['United Kingdom', 342.1, '27%', '6.2%'], ['Rest of Europe', 398.4, '31%', '5.8%'], ['North America', 286.2, '22%', '9.9%'],
+    ['Asia Pacific', 231.0, '18%', '12.4%'], ['Rest of world', 26.3, '2%', '3.1%'],
+    { sub: true, cells: ['Total', 1284.0, '100%', '8.0%'] },
+  ])}
+`);
+
+SEGMENTS.forEach((s) => {
+  const growth = ((s.rev[1] / s.rev[0] - 1) * 100).toFixed(1);
+  chapter('Segment reviews', s.name, `
+    <p class="lede">${s.intro}</p>
+    <div class="cards">
+      <div class="card"><b>£${s.rev[1]}m</b>Revenue<small>up ${growth}%</small></div>
+      <div class="card"><b>£${s.op[1]}m</b>Operating profit<small>was £${s.op[0]}m</small></div>
+      <div class="card"><b>${(100 * s.op[1] / s.rev[1]).toFixed(1)}%</b>Operating margin<small>was ${(100 * s.op[0] / s.rev[0]).toFixed(1)}%</small></div>
+      <div class="card"><b>£${s.orders[1]}m</b>Orders received<small>was £${s.orders[0]}m</small></div>
+    </div>
+    ${p(s.paras[0], s.paras[1])}
+    ${fig(bars(s.quarters, ['Q1', 'Q2', 'Q3', 'Q4'], { color: s.color, unit: ['£', 'm'], label: `${s.name} revenue by quarter`, h: 260 }), `${s.name}: revenue by quarter, £ million.`)}
+    ${p(s.paras[2], s.paras[3])}
+    <h3>Segment summary</h3>
+    ${table(['£ million', '2026', '2025', 'Change'], [
+      ['Orders received', s.orders[1], s.orders[0], `${((s.orders[1] / s.orders[0] - 1) * 100).toFixed(1)}%`],
+      ['Revenue', s.rev[1], s.rev[0], `${growth}%`],
+      ['Gross profit', +(s.rev[1] * 0.462).toFixed(1), +(s.rev[0] * 0.455).toFixed(1), ''],
+      ['Operating profit', s.op[1], s.op[0], `${((s.op[1] / s.op[0] - 1) * 100).toFixed(1)}%`],
+      ['Capital expenditure', +(s.rev[1] * 0.031).toFixed(1), +(s.rev[0] * 0.029).toFixed(1), ''],
+      ['Employees at year end', String(s.staff), String(Math.round(s.staff * 0.95)), ''],
+    ])}
+    ${fig(lines([{ name: 'Monthly orders (£m)', values: MONTHS.map((_, i) => +(s.orders[1] / 12 * (0.85 + 0.3 * Math.abs(Math.sin(i * 1.3 + s.staff)))).toFixed(1)), color: s.color }], MONTHS, { label: `${s.name} monthly orders` }), `${s.name}: orders received by month, £ million.`)}
+  `);
+});
+
+chapter('Financial review', 'Financial review', `
+  <p class="kicker">From the Chief Financial Officer</p>
+  <p class="lede">Higher margins, strong cash generation and a balance sheet with room to invest.</p>
+  ${p(
+    'Group revenue rose 8.0% to £1,284.0 million (2025: £1,189.0 million). At constant exchange rates growth was 8.6%, as sterling strengthened slightly against the euro during the year. Organic growth, which excludes the businesses acquired in the previous year for the months in which we did not own them last year, was 6.9%.',
+    'Gross margin improved by 0.5 percentage points to 45.4%. Most of the improvement came from a richer mix, with the Halden series and recurring revenue both carrying above average margins, and from lower freight costs. Input cost inflation, particularly for electronic components, was modest and was offset by price increases averaging 2.5%.',
+    'Operating costs grew more slowly than revenue. Distribution costs rose 8.1%, in line with sales, while administrative expenses rose 7.0%. Research and development expense rose 12.8% to £62.7 million as we invested in software and in the new diagnostic tests. Including amounts capitalised, total spending on research and development was £66.1 million, or 5.1% of revenue.',
+  )}
+  ${fig(bars(OPPROFIT, YEARS, { color: C.teal, unit: ['£', 'm'], highlight: 4, label: 'Operating profit by year' }), 'Operating profit, £ million.')}
+  ${p(
+    'Net finance costs fell to £11.7 million (2025: £13.5 million) as average borrowing fell. The effective tax rate was 24.0% (2025: 24.0%), in line with the main rate of UK corporation tax. Profit after tax rose 13.8% to £124.9 million and basic earnings per share rose 12.2% to 77.4 pence. The share count rose slightly following the exercise of employee share options.',
+  )}
+  <h3>Cash flow</h3>
+  ${p(
+    'Cash generated from operations was £268.4 million, 113% of operating profit before depreciation and amortisation was charged. Working capital released £14.2 million, mainly through lower inventory at our two largest plants, where a new planning system has cut the number of days of stock held by about a week. Capital expenditure was £39.8 million, in line with depreciation.',
+    'Free cash flow, after interest, tax and capital expenditure, was £212.0 million. We paid dividends of £46.0 million and spent £22.4 million buying back shares to satisfy employee share plans. Net debt fell from £176.3 million to £71.9 million.',
+  )}
+  ${fig(hbars([
+    { name: 'Operating cash flow', value: 268.4, color: C.navy }, { name: 'Tax paid', value: 37.1, color: C.coral },
+    { name: 'Interest paid', value: 13.6, color: C.coral }, { name: 'Capital expenditure', value: 39.8, color: C.coral },
+    { name: 'Free cash flow', value: 212.0, color: C.teal }, { name: 'Dividends paid', value: 46.0, color: C.sand },
+    { name: 'Share purchases', value: 22.4, color: C.sand }, { name: 'Reduction in net debt', value: 104.4, color: C.teal },
+  ], { unit: ['£', 'm'], label: 'Cash flow bridge' }), 'Where the cash went, £ million.')}
+  <h3>Capital allocation</h3>
+  ${p(
+    'The board agreed a capital allocation framework during the year. Our first call on cash is investment in the business: research and development, capital expenditure and the working capital needed to grow. Second is a progressive dividend, covered between two and a half and three times by earnings. Third is acquisitions that meet our financial and strategic tests. Any cash left after those, while keeping net debt below one and a half times EBITDA, will be returned to shareholders.',
+    'Return on capital employed rose to 19.6% (2025: 18.4%), comfortably above our estimated cost of capital of around 9%. Return on capital is one of the measures that determines executive bonuses and long term share awards.',
+  )}
+  <h3>Alternative performance measures</h3>
+  ${table(['£ million', '2026', '2025'], [
+    ['Operating profit', 176.0, 158.0], ['Add back: depreciation', 38.2, 36.9], ['Add back: amortisation', 21.4, 20.3],
+    { sub: true, cells: ['EBITDA', 235.6, 215.2] },
+    ['Net debt', 71.9, 176.3], { sub: true, cells: ['Net debt to EBITDA', '0.3x', '0.8x'] },
+  ])}
+  <p>Fernbrook uses a small number of measures that are not defined in accounting standards, because they help explain the business. Each is reconciled to the nearest statutory measure in this report.</p>
+`);
+
+chapter('Strategic report', 'Sustainability', `
+  <p class="lede">Our instruments help others measure their impact on the world. We hold ourselves to the same standard.</p>
+  ${p(
+    'We set targets in 2022 to halve the greenhouse gas emissions from our own operations by 2030 and to reach net zero across our whole value chain by 2045. Emissions from our own operations, known as scope 1 and 2, fell 14% this year and are now 38% below the 2022 baseline. Most of the reduction came from switching our plants in Leeds, Cork and Eindhoven to renewable electricity contracts and from replacing gas heating at two sites with heat pumps.',
+    'Emissions from our value chain, known as scope 3, are much larger and harder to reduce. About two thirds come from the components and materials we buy, and most of the rest from the electricity our instruments use once they are installed. We now ask our hundred largest suppliers to report their emissions and to set reduction targets of their own, and 71 of them have done so.',
+  )}
+  ${fig(bars([41.2, 37.6, 33.1, 29.7, 25.5], YEARS, { color: C.teal, unit: ['', 'k'], label: 'Scope 1 and 2 emissions', highlight: 4 }), 'Scope 1 and 2 emissions, thousand tonnes of carbon dioxide equivalent.')}
+  <div class="two">
+    ${fig(donut([{ name: 'Purchased goods', value: 64, color: C.navy }, { name: 'Use of products', value: 22, color: C.teal }, { name: 'Transport', value: 8, color: C.sand }, { name: 'Other', value: 6, color: C.grey }], { centre: 'Scope 3', label: 'Scope 3 emissions by source' }), 'Scope 3 emissions by source.')}
+    ${fig(donut([{ name: 'Recycled', value: 71, color: C.teal }, { name: 'Recovered', value: 18, color: C.sand }, { name: 'Landfill', value: 11, color: C.coral }], { centre: 'Waste', label: 'Waste by route' }), 'Waste from our sites by route.')}
+  </div>
+  ${p(
+    'Product design is where we can make the biggest difference. Every new Fernbrook instrument now goes through a design review that sets a target for energy use, repairability and the share of recycled material. The Halden series uses 30% less electricity than the platform it replaces, and every circuit board can be swapped by a field engineer in under twenty minutes, so instruments are repaired rather than replaced.',
+    'We continue to take back used diagnostic cartridges in seven countries and are working with a recycling partner to recover the plastic from them. This is harder than it sounds, because cartridges that have held blood must be sterilised first, but the first trial batch has been successfully recycled into new packaging trays.',
+  )}
+  ${table(['Measure', '2024', '2025', '2026'], [
+    ['Scope 1 and 2 emissions (thousand tonnes)', '33.1', '29.7', '25.5'], ['Renewable electricity share', '54%', '68%', '82%'],
+    ['Water use (thousand cubic metres)', '412', '398', '371'], ['Waste sent to landfill', '17%', '14%', '11%'],
+    ['Lost time injury rate (per 100,000 hours)', '0.31', '0.27', '0.22'], ['Women in senior leadership', '31%', '34%', '37%'],
+    ['Employee engagement score', '71', '73', '76'], ['Voluntary staff turnover', '10.4%', '9.6%', '8.9%'],
+  ])}
+`);
+
+chapter('Strategic report', 'Principal risks', `
+  <p class="lede">The risks that could most affect our ability to deliver the strategy, and what we do about them.</p>
+  ${table(['Risk', 'What could happen', 'How we manage it', 'Movement'], [
+    ['Product quality', 'A fault in a product in the field harms a customer, a patient or our reputation.', 'Design reviews, supplier testing, field data monitoring and a recall procedure tested every year.', '<span class="pill up">Higher</span>'],
+    ['Cyber security', 'An attack disrupts our plants or exposes customer data held on Fernbrook Cloud.', 'Independent testing, staff training, segregated networks and a tested response plan.', '<span class="pill up">Higher</span>'],
+    ['Supply chain', 'A shortage of a critical component halts production.', 'Two sources for critical parts where possible, safety stock and long term supply agreements.', '<span class="pill down">Lower</span>'],
+    ['Regulation', 'A change in medical device or environmental rules delays a launch or adds cost.', 'A dedicated regulatory team and early engagement with regulators in each market.', '<span class="pill flat">Stable</span>'],
+    ['Competition', 'A competitor launches a better product or cuts prices sharply.', 'Sustained investment in research, close customer relationships and a focus on categories we lead.', '<span class="pill flat">Stable</span>'],
+    ['People', 'We cannot attract or keep the engineers and scientists we need.', 'Competitive pay, clear careers, a strong graduate scheme and regular engagement surveys.', '<span class="pill down">Lower</span>'],
+    ['Economic conditions', 'A downturn cuts customer budgets for capital equipment.', 'A growing share of recurring revenue and a flexible cost base.', '<span class="pill flat">Stable</span>'],
+    ['Climate change', 'Extreme weather disrupts a plant or a supplier.', 'Site risk assessments, insurance and the ability to move production between plants.', '<span class="pill up">Higher</span>'],
+    ['Geopolitics', 'Trade barriers or sanctions restrict sales or supply in a region.', 'Monitoring by the legal team, regional supply and diversified customer base.', '<span class="pill up">Higher</span>'],
+  ], 9)}
+  <h3>Viability statement</h3>
+  ${p(
+    'The directors have assessed the prospects of the group over a three year period, which matches the horizon of our strategic plan. The assessment tested the plan against severe but plausible scenarios, including a product recall costing £40 million, a 15% fall in revenue for two years, and the loss of our largest plant for three months. In every scenario the group remained within its banking covenants and had sufficient liquidity.',
+    'Based on that assessment, the directors have a reasonable expectation that the group will be able to continue in operation and meet its liabilities as they fall due over the three years to March 2029.',
+  )}
+`);
+
+const BOARD = [
+  ['Margaret Ellison', 'Chair', 'Appointed 2021. Former chief executive of an engineering group. Chairs the nomination committee.', C.navy],
+  ['Daniel Okafor', 'Chief Executive', 'Appointed 2020. Joined Fernbrook in 2014 to run Laboratory Systems. Trained as a chemist.', C.teal],
+  ['Priya Raman', 'Chief Financial Officer', 'Appointed 2022. Previously finance director of a listed healthcare business. Chartered accountant.', C.coral],
+  ['Thomas Berg', 'Senior Independent Director', 'Appointed 2017. Former chief operating officer of a European industrial company.', C.sand],
+  ['Aisha Mensah', 'Independent Non Executive', 'Appointed 2019. Chairs the audit committee. Former audit partner.', C.navy],
+  ['Robert Lindqvist', 'Independent Non Executive', 'Appointed 2017. Chairs the remuneration committee. Retires at the 2026 AGM.', C.teal],
+  ['Sofia Moreno', 'Independent Non Executive', 'Appointed 2025. Former chief executive of a software company serving hospitals.', C.coral],
+  ['James Whitfield', 'Independent Non Executive', 'Appointed 2025. Ran a medical device business for twelve years.', C.sand],
+  ['Hannah Cole', 'Independent Non Executive', 'Appointed 2023. Chairs the sustainability committee. Environmental scientist.', C.navy],
+  ['Kenji Watanabe', 'Independent Non Executive', 'Appointed 2024. Former head of Asia Pacific at a global instruments company.', C.teal],
+];
+
+chapter('Governance', 'Board of directors', `
+  <p class="lede">A board of ten, with a majority of independent non executive directors and a broad mix of experience.</p>
+  <div class="board">
+    ${BOARD.map(([n, r, b, c]) => `<div class="person"><div class="face" style="background:${c}">${n.split(' ').map((w) => w[0]).join('')}</div><div><strong>${n}</strong><br><span style="color:#1c6d63;font-weight:600">${r}</span><p>${b}</p></div></div>`).join('')}
+  </div>
+  <h3>Attendance at meetings</h3>
+  ${table(['Director', 'Board', 'Audit', 'Remuneration', 'Nomination'], BOARD.map(([n], i) => [n, `${i === 7 ? 6 : 8}/8`, i >= 3 ? '4/4' : '', i >= 3 && i <= 6 ? '5/5' : '', i === 0 || i >= 3 ? '3/3' : '']), 1)}
+  <h3>How the board spent its time</h3>
+  ${fig(donut([{ name: 'Strategy', value: 30, color: C.navy }, { name: 'Performance', value: 25, color: C.teal }, { name: 'Risk and audit', value: 18, color: C.coral }, { name: 'People and culture', value: 15, color: C.sand }, { name: 'Governance', value: 12, color: C.grey }], { centre: 'Time', label: 'Board time by topic' }), 'Share of board meeting time by topic.')}
+  ${p(
+    'The board met eight times during the year, including two days at our plant in Cork and one at the new training centre in Singapore. Directors met customers, suppliers and employees at every site visit. An external review of the board\'s effectiveness, carried out by an independent firm, found that the board works well and recommended more time on technology and cyber security, which we have built into next year\'s plan.',
+  )}
+`);
+
+chapter('Governance', 'Directors\' remuneration report', `
+  <p class="lede">Pay for the executive directors is closely linked to the performance shareholders care about.</p>
+  ${p(
+    'The remuneration committee\'s aim is simple: pay enough to attract and keep the leaders the company needs, link a large share of that pay to performance, and make sure that executives own enough shares to feel the same as shareholders when the share price rises or falls.',
+    'The annual bonus for the year was based on operating profit (60%), free cash flow (20%) and personal objectives (20%). Operating profit and cash flow both came in above target, and the committee awarded bonuses of 84% of the maximum to the Chief Executive and 82% to the Chief Financial Officer. Half of each bonus is paid in shares that must be held for three years.',
+  )}
+  <h3>Single total figure of remuneration (£ thousand)</h3>
+  ${table(['Element', 'D. Okafor 2026', 'D. Okafor 2025', 'P. Raman 2026', 'P. Raman 2025'], [
+    ['Salary', '742', '715', '486', '468'], ['Benefits', '28', '27', '21', '20'], ['Pension', '74', '72', '49', '47'],
+    ['Annual bonus', '935', '812', '598', '509'], ['Long term incentive', '1,214', '986', '402', '0'],
+    { sub: true, cells: ['Total', '2,993', '2,612', '1,556', '1,044'] },
+  ])}
+  ${fig(grouped([
+    { name: 'Target', values: [100, 100, 100], color: C.grey },
+    { name: 'Achieved', values: [112, 118, 95], color: C.teal },
+  ], ['Operating profit', 'Free cash flow', 'Personal'], { unit: ['', '%'], label: 'Bonus measures against target' }), 'Bonus measures, achievement as a percentage of target.')}
+  <h3>Non executive director fees (£ thousand)</h3>
+  ${table(['Director', 'Base fee', 'Committee chair', 'Total 2026', 'Total 2025'], BOARD.filter((b, i) => i !== 1 && i !== 2).map(([n], i) => [n, i === 0 ? '310' : '68', [3, 4, 6].includes(i) ? '18' : '', i === 0 ? '310' : [3, 4, 6].includes(i) ? '86' : '68', i === 0 ? '300' : i >= 5 && i <= 6 ? '12' : '65']))}
+  ${p(
+    'Executive directors are required to hold shares worth at least 250% of salary, and to keep holding shares worth that amount for two years after they leave. Both executive directors meet the requirement. The ratio of the Chief Executive\'s total pay to that of the median employee in the UK was 58 to 1 (2025: 54 to 1).',
+  )}
+`);
+
+chapter('Governance', 'Independent auditor\'s report', `
+  <p class="lede">To the members of Fernbrook Instruments plc.</p>
+  ${p(
+    'In our opinion the financial statements give a true and fair view of the state of the group\'s and of the parent company\'s affairs as at 31 March 2026 and of the group\'s profit for the year then ended, have been properly prepared in accordance with UK adopted international accounting standards, and have been prepared in accordance with the requirements of the Companies Act 2006.',
+    'We conducted our audit in accordance with International Standards on Auditing (UK) and applicable law. Our responsibilities under those standards are further described in the auditor\'s responsibilities section of our report. We are independent of the group in accordance with the ethical requirements that are relevant to our audit of the financial statements in the UK.',
+  )}
+  <h3>Key audit matters</h3>
+  ${table(['Matter', 'Why it mattered', 'What we did'], [
+    ['Revenue from long term contracts', 'Judgement is needed over how much revenue to recognise on multi year service and supply contracts.', 'Tested a sample of contracts against the terms agreed and the work done, and challenged management\'s estimates of costs to complete.'],
+    ['Carrying value of goodwill', 'Goodwill of £318 million depends on forecasts of future cash flows.', 'Compared forecasts with past accuracy and external data, and tested the sensitivity of the result to changes in the key assumptions.'],
+    ['Warranty provisions', 'The seal failure raised the risk that warranty provisions are too low.', 'Reviewed claims data, the cost of past failures and the engineering assessment of the affected batch.'],
+    ['Capitalised development costs', 'Judgement is needed over when development spending meets the tests for capitalisation.', 'Tested a sample of projects against the criteria in the accounting standard and reviewed their commercial prospects.'],
+  ], 9)}
+  ${p(
+    'We set group materiality at £8.2 million, about 5% of profit before tax. We agreed with the audit committee that we would report any misstatement above £0.4 million, as well as smaller ones that in our view warranted reporting for qualitative reasons.',
+    'The directors are responsible for the preparation of the financial statements and for being satisfied that they give a true and fair view. Our objectives are to obtain reasonable assurance about whether the financial statements as a whole are free from material misstatement, whether due to fraud or error, and to issue an auditor\'s report that includes our opinion.',
+  )}
+  <p class="sig">A fictional audit firm, Statutory Auditor, 2 June 2026</p>
+`);
+
+chapter('Financial statements', 'Consolidated income statement', `
+  <p class="lede">For the year ended 31 March 2026.</p>
+  ${table(['£ million', '2026', '2025'], statement([
+    { items: [['Revenue', 1284.0, 1189.0], ['Cost of sales', -701.3, -655.2]], running: 'Gross profit' },
+    { items: [['Distribution costs', -142.6, -131.9], ['Administrative expenses', -201.4, -188.3], ['Research and development', -62.7, -55.6]], running: 'Operating profit' },
+    { items: [['Finance income', 3.1, 2.4], ['Finance costs', -14.8, -15.9]], running: 'Profit before tax' },
+    { items: [['Taxation', -39.4, -34.7]], running: 'Profit for the year' },
+  ]))}
+  ${table(['Earnings per share', '2026', '2025'], [['Basic (pence)', '77.4', '69.0'], ['Diluted (pence)', '76.8', '68.4']])}
+  <h3>Consolidated statement of comprehensive income</h3>
+  ${table(['£ million', '2026', '2025'], statement([
+    { items: [['Profit for the year', 124.9, 109.8]] },
+    { head: 'Items that will not be reclassified to profit', items: [['Remeasurement of pension schemes', 4.2, -6.1], ['Tax on those items', -1.1, 1.5]] },
+    { head: 'Items that may be reclassified to profit', items: [['Exchange differences on foreign operations', -8.7, 5.3], ['Cash flow hedges', 2.3, -1.9]], running: 'Total comprehensive income' },
+  ]))}
+`);
+
+chapter('Financial statements', 'Consolidated balance sheet', `
+  <p class="lede">At 31 March 2026.</p>
+  ${table(['£ million', '2026', '2025'], statement([
+    { head: 'Non current assets', items: [['Goodwill', 318.4, 322.1], ['Other intangible assets', 142.7, 151.3], ['Property, plant and equipment', 286.9, 285.3], ['Right of use assets', 48.2, 51.7], ['Deferred tax assets', 21.6, 24.0]], total: 'Total non current assets' },
+    { head: 'Current assets', items: [['Inventories', 198.3, 212.5], ['Trade and other receivables', 261.4, 246.8], ['Cash and cash equivalents', 128.1, 73.7]], total: 'Total current assets', running: 'Total assets' },
+    { head: 'Current liabilities', sign: -1, items: [['Trade and other payables', 214.6, 201.2], ['Contract liabilities', 96.3, 84.9], ['Borrowings', 20.0, 30.0], ['Provisions', 18.4, 14.2]], total: 'Total current liabilities' },
+    { head: 'Non current liabilities', sign: -1, items: [['Borrowings', 180.0, 220.0], ['Lease liabilities', 44.8, 48.6], ['Retirement benefit obligations', 31.2, 38.9], ['Deferred tax liabilities', 27.3, 28.5]], total: 'Total non current liabilities', running: 'Net assets' },
+  ]), 1, 'tight')}
+  ${table(['Equity, £ million', '2026', '2025'], [['Share capital', 16.1, 15.9], ['Share premium', 84.3, 79.6], ['Hedging and translation reserves', 12.6, 19.0], ['Retained earnings', 660.0, 586.6], { sub: true, cells: ['Total equity', 773.0, 701.1] }], 1, 'tight')}
+`);
+
+chapter('Financial statements', 'Consolidated cash flow statement', `
+  <p class="lede">For the year ended 31 March 2026.</p>
+  ${table(['£ million', '2026', '2025'], statement([
+    { head: 'Operating activities', items: [['Operating profit', 176.0, 158.0], ['Depreciation and amortisation', 59.6, 57.2], ['Share based payments', 8.4, 7.6], ['Decrease (increase) in inventories', 14.2, -9.8], ['Increase in receivables', -14.6, -18.1], ['Increase in payables and contract liabilities', 24.8, 12.4]], total: 'Cash generated from operations' },
+    { items: [['Tax paid', -37.1, -33.0], ['Interest paid', -13.6, -14.9]], running: 'Net cash from operating activities' },
+    { head: 'Investing activities', items: [['Purchase of property, plant and equipment', -31.4, -29.8], ['Capitalised development costs', -8.4, -7.9], ['Acquisitions, net of cash acquired', 0.0, -64.2], ['Interest received', 3.1, 2.4]], total: 'Net cash used in investing' },
+    { head: 'Financing activities', items: [['Dividends paid', -46.0, -42.1], ['Purchase of own shares', -22.4, -15.3], ['Repayment of borrowings', -50.0, -10.0], ['Lease payments', -13.1, -12.1], ['Proceeds from share issues', 4.9, 3.2]], total: 'Net cash used in financing', running: 'Net increase in cash' },
+  ]))}
+`);
+
+// Notes to the financial statements: generated, with totals worked out.
+const NOTES = [
+  ['Accounting policies', null, 'These financial statements have been prepared in accordance with UK adopted international accounting standards and on a going concern basis. They are presented in pounds sterling, rounded to the nearest hundred thousand. The policies below have been applied consistently to all years presented, except where a new standard has been adopted. Revenue from the sale of instruments is recognised when control passes to the customer, usually on delivery or, where installation is significant, on completion of installation. Revenue from service contracts and software subscriptions is recognised evenly over the period of the contract.'],
+  ['Segment information', ['Laboratory Systems', 'Environmental Monitoring', 'Medical Diagnostics', 'Service and Software', 'Central costs'], 'The group has four operating segments, each managed separately because each requires different technology and marketing strategies. Central costs include the cost of the board, group finance, legal and the head office.'],
+  ['Revenue', ['Instruments', 'Consumables and cartridges', 'Service contracts', 'Software subscriptions', 'Other'], 'Revenue analysed by type. Recurring revenue comprises consumables, cartridges, service contracts and software subscriptions.'],
+  ['Operating costs', ['Raw materials and components', 'Staff costs', 'Depreciation', 'Amortisation', 'Freight and distribution', 'Property costs', 'Other costs'], 'Operating costs by nature, including cost of sales.'],
+  ['Employees', ['Production', 'Research and development', 'Sales and marketing', 'Service', 'Administration'], 'Average number of employees during the year, by function, shown in hundreds.'],
+  ['Finance income and costs', ['Interest on bank deposits', 'Interest on borrowings', 'Interest on lease liabilities', 'Net interest on pension schemes', 'Other finance costs'], 'Finance income and costs recognised in the income statement.'],
+  ['Taxation', ['Current tax, UK', 'Current tax, overseas', 'Adjustments for prior years', 'Deferred tax'], 'The tax charge for the year. The effective rate of 24.0% is in line with the UK main rate.'],
+  ['Goodwill', ['Laboratory Systems', 'Environmental Monitoring', 'Medical Diagnostics', 'Service and Software'], 'Goodwill is allocated to cash generating units and tested for impairment every year. No impairment was required. The headroom in every unit is more than 40% of its carrying value.'],
+  ['Intangible assets', ['Customer relationships', 'Technology', 'Brands', 'Development costs', 'Software'], 'Intangible assets other than goodwill, at net book value.'],
+  ['Property, plant and equipment', ['Land and buildings', 'Plant and machinery', 'Fixtures and fittings', 'Computer equipment', 'Assets under construction'], 'Property, plant and equipment, at net book value.'],
+  ['Inventories', ['Raw materials', 'Work in progress', 'Finished goods', 'Spare parts for service'], 'Inventories are stated at the lower of cost and net realisable value.'],
+  ['Trade and other receivables', ['Trade receivables', 'Contract assets', 'Prepayments', 'Other receivables', 'Loss allowance'], 'Trade and other receivables. The loss allowance is based on expected credit losses.'],
+  ['Borrowings', ['Revolving credit facility', 'Private placement notes 2028', 'Private placement notes 2031', 'Overdrafts'], 'The group has a £400 million revolving credit facility that runs to 2029, of which £100 million was drawn at the year end.'],
+  ['Provisions', ['Warranty', 'Restructuring', 'Legal', 'Property'], 'Provisions. The warranty provision includes £1.4 million for the remaining cost of replacing the affected batch of water sensors.'],
+  ['Retirement benefits', ['Present value of obligations', 'Fair value of scheme assets', 'Net deficit'], 'The group operates one closed defined benefit scheme in the UK and defined contribution schemes in all countries.'],
+  ['Share capital', ['Ordinary shares at 1 April (millions)', 'Issued under share plans (millions)', 'Ordinary shares at 31 March (millions)'], 'Ordinary shares of 10 pence each, fully paid.'],
+  ['Share based payments', ['Long term incentive plan', 'Deferred bonus plan', 'Save as you earn scheme', 'International share plan'], 'Charge for share based payments recognised in the year.'],
+  ['Financial instruments', ['Forward currency contracts', 'Interest rate swaps', 'Commodity hedges', 'Other derivatives'], 'Fair value of derivative financial instruments. All are level 2 in the fair value hierarchy.'],
+  ['Leases', ['Property leases', 'Vehicle leases', 'Equipment leases'], 'Right of use assets, at net book value.'],
+  ['Contingent liabilities', null, 'From time to time the group is involved in legal proceedings arising in the ordinary course of business. The directors do not expect the outcome of any current proceedings to have a material effect on the group\'s financial position. The group has given guarantees in respect of performance bonds on certain long term contracts, none of which is expected to give rise to a loss.'],
+  ['Related party transactions', null, 'Transactions between the company and its subsidiaries have been eliminated on consolidation. Remuneration of key management personnel is set out in the directors\' remuneration report. There were no other related party transactions during the year that require disclosure.'],
+  ['Events after the balance sheet date', null, 'On 14 May 2026 the group agreed to acquire a small developer of laboratory scheduling software for £18 million in cash. The acquisition is expected to complete in July 2026 and will be reported within Service and Software.'],
+];
+
+let notesHtml = '<p class="lede">The notes form part of the financial statements.</p>';
+NOTES.forEach(([title, items, text], i) => {
+  notesHtml += `<h3>${i + 1}. ${title}</h3><p>${text}</p>`;
+  if (items) {
+    const scale = 20 + rnd() * 200;
+    const rows = items.map((name) => {
+      const cy = +(scale * (0.3 + rnd())).toFixed(1);
+      return [name, cy, +(cy * (0.88 + rnd() * 0.18)).toFixed(1)];
+    });
+    const t = rows.reduce((a, r) => [a[0] + r[1], a[1] + r[2]], [0, 0]);
+    rows.push({ sub: true, cells: ['Total', +t[0].toFixed(1), +t[1].toFixed(1)] });
+    notesHtml += table(['£ million', '2026', '2025'], rows);
+  }
+});
+chapter('Financial statements', 'Notes to the financial statements', notesHtml);
+
+chapter('Other information', 'Five year summary', `
+  <p class="lede">Years ended 31 March.</p>
+  ${table(['£ million', ...YEARS], [
+    { head: 'Income statement' },
+    ['Revenue', ...REVENUE.map((v) => v.toFixed(1))], ['Operating profit', ...OPPROFIT.map((v) => v.toFixed(1))],
+    ['Operating margin', '12.5%', '12.9%', '13.2%', '13.3%', '13.7%'], ['Profit before tax', '105.2', '117.9', '131.4', '144.5', '164.3'],
+    ['Profit for the year', '79.9', '89.6', '99.9', '109.8', '124.9'],
+    { head: 'Per share' },
+    ['Basic earnings per share (p)', ...EPS.map((v) => v.toFixed(1))], ['Dividend per share (p)', ...DIVIDEND.map((v) => v.toFixed(1))],
+    { head: 'Cash and balance sheet' },
+    ['Free cash flow', '142.0', '168.0', '181.0', '185.0', '212.0'], ['Net debt', '248.1', '221.6', '196.8', '176.3', '71.9'],
+    ['Return on capital employed', '15.8%', '16.6%', '17.5%', '18.4%', '19.6%'],
+    { head: 'People' },
+    ['Employees at year end', '4,980', '5,120', '5,290', '5,450', '5,650'],
+  ])}
+  ${fig(grouped(SEGMENTS.map((s, j) => ({ name: s.name, color: s.color, values: REVENUE.map((r, i) => Math.round(r * [0.39, 0.245, 0.235, 0.13][j] * (1 + (j === 3 ? 0.04 : -0.01) * (i - 2)))) })), YEARS, { label: 'Revenue by segment and year' }), 'Revenue by segment, £ million.')}
+`);
+
+chapter('Other information', 'Shareholder information', `
+  <h3>Financial calendar</h3>
+  ${table(['Event', 'Date'], [['Annual general meeting', '23 July 2026'], ['Ex dividend date for final dividend', '25 June 2026'], ['Record date', '26 June 2026'], ['Final dividend paid', '31 July 2026'], ['Half year results', '12 November 2026'], ['Interim dividend paid', '8 January 2027']], 9)}
+  <h3>Analysis of shareholdings at 31 March 2026</h3>
+  ${table(['Size of holding', 'Holders', '% of holders', 'Shares (m)', '% of shares'], [['1 to 1,000', '6,412', '61.8%', '2.1', '1.3%'], ['1,001 to 10,000', '3,207', '30.9%', '8.9', '5.5%'], ['10,001 to 100,000', '548', '5.3%', '14.7', '9.1%'], ['100,001 to 1,000,000', '163', '1.6%', '49.2', '30.5%'], ['Over 1,000,000', '41', '0.4%', '86.5', '53.6%']])}
+  <h3>Glossary</h3>
+  ${table(['Term', 'Meaning'], [
+    ['Attachment rate', 'The share of instruments sold with a service contract, consumables agreement or software subscription at the time of sale.'],
+    ['Cash conversion', 'Free cash flow as a percentage of profit after tax.'],
+    ['EBITDA', 'Earnings before interest, tax, depreciation and amortisation.'],
+    ['Free cash flow', 'Cash from operations after tax, interest and capital expenditure, before dividends and acquisitions.'],
+    ['Organic growth', 'Growth in revenue excluding the effect of acquisitions and disposals and at constant exchange rates.'],
+    ['Recurring revenue', 'Revenue from consumables, cartridges, service contracts and software subscriptions.'],
+  ], 9)}
+`);
+
+// ---------- assemble: contents page, then each chapter on its own page ----------
+
+const toc = document.getElementById('toc'), out = document.getElementById('chapters');
+let lastPart = '';
+CH.forEach((c, i) => {
+  if (c.part !== lastPart) { toc.insertAdjacentHTML('beforeend', `<li class="part">${c.part}</li>`); lastPart = c.part; }
+  toc.insertAdjacentHTML('beforeend', `<li><span>${i + 1}. ${c.title}</span></li>`);
+  out.insertAdjacentHTML('beforeend', `<section><h2 data-pdfbot-break>${c.title}</h2>${c.html}</section>`);
+});
+</script>
+<script src="../dist/pdfbot.js?v=0.3.7" defer></script>
+<script>addEventListener('DOMContentLoaded', () => { if (window.pdfbot) document.getElementById('version').textContent = 'pdfbot ' + window.pdfbot.version; });</script>
+</body>
+</html>

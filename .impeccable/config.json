@@ -335,6 +335,15 @@
         ],
         "createdAt": "2026-11-24T03:58:32.265Z",
         "reason": "Claude decided: throwaway decision-round sketch, never shipped, not part of the DESIGN.md system"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "demo/annual-report.html"
+        ],
+        "createdAt": "2026-11-24T09:56:41.074Z",
+        "reason": "Claude: detector reads the cover gradient's last stop (#f4f1ea) as the background; the white cover text sits on the navy band, about 12:1"
       }
     ]
   }

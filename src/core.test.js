@@ -32,7 +32,7 @@ test('plain content is cut at page height', () => {
 });
 
 test('a cut moves above a line of text it would slice', () => {
-  const pages = planPages({ totalHeight: 2000, pageHeight: 1000, keeps: [[990, 1010]] });
+  const pages = planPages({ totalHeight: 2000, pageHeight: 1000, keeps: [[990, 1010], [1980, 1995]] });
   assert.equal(pages[0].height, 990);
   assertTiles(pages, 2000);
 });
@@ -42,7 +42,7 @@ test('stacked spans: moving the cut up re-checks what it now crosses', () => {
   const pages = planPages({
     totalHeight: 2000,
     pageHeight: 1000,
-    keeps: [[950, 1005], [900, 960]],
+    keeps: [[950, 1005], [900, 960], [1980, 1995]],
   });
   assert.equal(pages[0].height, 900);
   assertTiles(pages, 2000);
@@ -91,7 +91,7 @@ test('fractional heights still tile exactly', () => {
   const pages = planPages({
     totalHeight: total,
     pageHeight: 1046.31,
-    keeps: [[1040.2, 1061.7], [2080.5, 2101.9]],
+    keeps: [[1040.2, 1061.7], [2080.5, 2101.9], [3190, 3205]],
   });
   assertTiles(pages, total);
   for (const p of pages) assert.ok(Number.isInteger(p.y) && Number.isInteger(p.height));
@@ -144,4 +144,32 @@ test('explicit filenames get a .pdf extension and safe characters', () => {
   assert.equal(ensurePdfExtension('report'), 'report.pdf');
   assert.equal(ensurePdfExtension('report.PDF'), 'report.PDF');
   assert.equal(ensurePdfExtension('a/b:c'), 'a-b-c.pdf');
+});
+
+test('a blank slice before a forced break is dropped, not printed empty', () => {
+  // Text ends at 990; the chapter's bottom padding runs to 1020, past the
+  // 1000px page; the next chapter is forced to start at 1020.
+  const pages = planPages({
+    totalHeight: 1500,
+    pageHeight: 1000,
+    keeps: [[10, 990], [1030, 1400]],
+    forced: [1020],
+  });
+  assert.deepEqual(pages.map((p) => [p.y, p.height]), [[0, 1000], [1020, 480]]);
+});
+
+test('a blank slice at the very end is dropped', () => {
+  const pages = planPages({ totalHeight: 1064, pageHeight: 1000, keeps: [[10, 990]] });
+  assert.deepEqual(pages.map((p) => [p.y, p.height]), [[0, 1000]]);
+});
+
+test('a slice with content before a forced break is kept', () => {
+  const pages = planPages({
+    totalHeight: 1500,
+    pageHeight: 1000,
+    keeps: [[10, 990], [1002, 1012], [1030, 1400]],
+    forced: [1020],
+  });
+  assert.equal(pages.length, 3);
+  assertTiles(pages, 1500);
 });
