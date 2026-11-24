@@ -40,7 +40,9 @@ small writer, `src/pdf.js`. esbuild bundles everything into `dist/`. Tests are `
   clicks on `[data-pdfbot]`, and injects `pdfbot-engine.js` on first use.
 - `src/engine-global.js`: entry point that puts the engine on `window.__pdfbotEngine`.
 - `src/index.js`: entry point for apps that bundle.
-- `demo/`: `index.html` is a gallery; `report`, `dashboard`, `article`, `invoice` and
+- `demo/`: `index.html` is a gallery; `explainer.html` is the first card, the how-it-works
+  and how-to-use page, designed with impeccable (system in `DESIGN.md`, product record in
+  `PRODUCT.md`); `report`, `dashboard`, `article`, `invoice` and
   `worksheet` are styled test pages, each using a different way to add the button.
   They load `../dist/pdfbot.js` by relative path, so they work both from the dev
   server and on GitHub Pages. Generate a PDF from every one after an engine change.

@@ -47,6 +47,24 @@
         ],
         "createdAt": "2026-11-24T03:17:32.626Z",
         "reason": "Claude: chart SVG now has a 16-unit inner margin via its viewBox (labels measured 24px+ from the border in the browser); the detector reads the full-bleed background rect as flush content"
+      },
+      {
+        "rule": "skipped-heading",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/canon.html"
+        ],
+        "createdAt": "2026-11-24T03:40:24.761Z",
+        "reason": "Claude decided: throwaway decision-page sketch of the unchosen category-standard card; never shipped"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "demo/explainer.html"
+        ],
+        "createdAt": "2026-11-24T03:52:57.287Z",
+        "reason": "Claude decided: static false positive; .exploded padding is clamp(20px, 3vw, var(--pitch)), measured 20 to 28px live, no text within 8px of any boxed edge"
       }
     ]
   }

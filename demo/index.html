@@ -29,6 +29,12 @@
   <p class="lede">Each page has a Save as PDF button wired up a different way. Press it, then open the PDF and try searching or selecting text: the words are real, not just a picture.</p>
 
   <div class="grid">
+    <a class="demo" href="explainer.html">
+      <div class="swatch" style="background: linear-gradient(135deg, #aee1ff 55%, #e53935 55%, #e53935 70%, #ffcd00 70%)"></div>
+      <h2>Start here: how pdfbot works</h2>
+      <p>The explainer, set as a build-instruction booklet: how a page becomes a PDF, how to add the button, every option, and what it will not do.</p>
+      <span class="tests">Mechanism · setup · limits</span>
+    </a>
     <a class="demo" href="report.html">
       <div class="swatch" style="background: linear-gradient(135deg, #eef6f2, #0b6e4f)"></div>
       <h2>Reading report</h2>
@@ -63,7 +69,7 @@
 
   <footer>pdfbot <span id="v"></span>. The library is two files: <code>pdfbot.js</code> and <code>pdfbot-engine.js</code>.</footer>
 </main>
-<script src="../dist/pdfbot.js?v=0.3.5"></script>
+<script src="../dist/pdfbot.js?v=0.3.6"></script>
 <script>document.getElementById('v').textContent = window.pdfbot ? pdfbot.version : '';</script>
 </body>
 </html>

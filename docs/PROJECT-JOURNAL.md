@@ -52,6 +52,27 @@ pick up a new version by copying `dist/` again.
 
 ## 5. Version history (what & why)
 
+### 2026-11-24 — 0.3.6 — The explainer page
+
+`demo/explainer.html`, now the first card in the gallery: how pdfbot works (an exploded
+diagram of one PDF page, then five numbered steps), how to build it in (four steps with
+code), every option, an honest limits section, and links to the demos and recaipe. It
+saves itself through pdfbot like every other demo.
+
+Designed with the impeccable skill: `PRODUCT.md` (new, the product record), a direction
+round where Sev chose the "brick build-instruction booklet" world, the contract in
+`.impeccable/surfaces/demo-explainer-html.md`, then an independent finish review.
+Headings are Archivo (OFL), self-hosted in `demo/fonts/` with its licence; body text is
+the system sans. No external requests.
+
+Measured while building it (Chromium on a Mac, the browser pane): saving the invoice demo
+took 0.2 to 0.6 seconds, the 12 page report about 1.2 seconds. The explainer quotes the
+invoice figure.
+
+Gotcha found: html2canvas draws each `<svg>` on its own, so `<use href="#symbol">`
+pointing at a symbol defined elsewhere in the page comes out blank in the PDF. Inside
+anything that gets saved, draw icons inline.
+
 ### 2026-11-24 — 0.3.5 — Breathing room in the report chart
 
 The bar chart in `demo/report.html` had its "Week 12" label about 12 units from the
@@ -197,6 +218,12 @@ maintained fork that handles those, so pdfbot uses it directly and does its own 
 - **Test the text layer with PDFKit, not only poppler.** Poppler accepts CMaps that
   break the spec; PDFKit silently drops them. `PDFDocument(url:).page(at:0).string`
   and `selection(from:to:)` from a small Swift script is the real check for Preview.
+- **Tiled `radial-gradient` backgrounds are not drawn by html2canvas-pro**, even small
+  repeating dot patterns that look fine on screen. Use an SVG data-URI tile as the
+  `background-image` instead (the explainer's stud ruling does this). Background images on
+  the saved element itself are also skipped, so put page-wide texture on a wrapper inside it.
+- **SVG `<use>` of a shared symbol is blank in the PDF.** html2canvas renders each SVG in
+  isolation. Inline the shapes inside any saved area.
 - **Multi-column text over a page break** is sliced across both columns, so reading
   order across pages is column 1 top, column 2 top, then both bottoms. Inherent in
   paging a picture of the screen.

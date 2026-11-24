@@ -91,6 +91,7 @@ Apps with a bundler can `import { save } from 'pdfbot'` instead.
 - Text typed into form fields is in the picture but not in the text layer.
 - Automatic hyphenation (`hyphens: auto`) is switched off in the PDF, because the
   hyphens cannot be drawn. Lines may break slightly differently from the screen.
+- Tiled `radial-gradient` backgrounds are not drawn; use an SVG image tile instead.
 - `::first-letter` styling is not drawn. For a drop cap, wrap the letter in a `<span>`.
 - Multi-column text that runs onto a second page is sliced across both columns, so
   each column continues at the top of the next page rather than flowing in order.
@@ -102,7 +103,8 @@ Apps with a bundler can `import { save } from 'pdfbot'` instead.
 
 ## Demos
 
-`demo/` has a gallery and five pages in different styles, each wiring the button up a
+`demo/` has a gallery, an explainer (`explainer.html`: how it works, how to build it in,
+options and limits), and five pages in different styles, each wiring the button up a
 different way: a long report (data attributes), a dark dashboard saved landscape, a
 magazine article (the floating `data-pdfbot-auto` button), a one page invoice
 (`pdfbot.save()` from JavaScript) and a German maths worksheet (`pdfbot.button()`).

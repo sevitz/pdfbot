@@ -1,6 +1,6 @@
 {
   "name": "pdfbot",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "One click Save as PDF for any web page, done in the browser with no print dialog.",
   "private": true,
   "type": "module",

@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T03:52:06Z",
+  "title": "Design System: pdfbot",
+  "extensions": {
+    "scope": "demo/explainer.html only. The other demo pages are deliberately varied test fixtures in their own styles and are not part of this system.",
+    "world": {
+      "catalog": "games-toys-physics-play-brick-build-instructions",
+      "seed": "1c44935cb378d094",
+      "note": "Catalog challenger chosen by the user for the explainer (over the assigned Timetable Booklet). Not a seeded world."
+    },
+    "colorMeta": {
+      "sky": { "role": "neutral", "displayName": "Instruction Sky", "canonical": "#aee1ff", "tonalRamp": ["#0b2a3d", "#164a69", "#2a6f96", "#4b97c2", "#77bde6", "#93d3f7", "#aee1ff", "#e3f4ff"] },
+      "sky-deep": { "role": "neutral", "displayName": "Deep Sky", "canonical": "#93d3f7", "tonalRamp": ["#0a2738", "#154562", "#28698f", "#468fba", "#6db5df", "#93d3f7", "#bde5fb", "#e8f6fe"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#111111", "tonalRamp": ["#111111", "#262626", "#3d3d3d", "#595959", "#7a7a7a", "#a1a1a1", "#c9c9c9", "#efefef"] },
+      "ink-soft": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#1d3a52", "tonalRamp": ["#0d1c29", "#1d3a52", "#2f5677", "#45759c", "#6994b8", "#93b4cf", "#bfd3e4", "#e8f0f7"] },
+      "brick": { "role": "secondary", "displayName": "Brick Red", "canonical": "#e53935", "tonalRamp": ["#3d0c0b", "#6e1715", "#a1221f", "#c62828", "#e53935", "#f15a56", "#f47a76", "#fde3e2"] },
+      "brick-deep": { "role": "secondary", "displayName": "Shaded Brick", "canonical": "#c62828", "tonalRamp": ["#330a0a", "#5e1313", "#8e1d1d", "#c62828", "#dd4a4a", "#ea7777", "#f4a9a9", "#fce4e4"] },
+      "yellow": { "role": "tertiary", "displayName": "Build Yellow", "canonical": "#ffcd00", "tonalRamp": ["#3d3000", "#6b5500", "#9c7c00", "#d9a800", "#ffcd00", "#ffdb4d", "#ffe580", "#fff6cc"] },
+      "blue": { "role": "primary", "displayName": "Accent Blue", "canonical": "#147bd1", "tonalRamp": ["#05213a", "#0a3c66", "#0f5fa3", "#147bd1", "#3f97e0", "#73b4ea", "#a9d1f3", "#e2f0fc"] },
+      "blue-deep": { "role": "primary", "displayName": "Deep Accent Blue", "canonical": "#0f5fa3", "tonalRamp": ["#041a2e", "#082f52", "#0f5fa3", "#2a7cc4", "#5598d4", "#82b5e2", "#b3d2ef", "#e4f0fa"] },
+      "plate": { "role": "neutral", "displayName": "Plate Grey", "canonical": "#d9d9d9", "tonalRamp": ["#2b2b2b", "#4a4a4a", "#6e6e6e", "#a9a9a9", "#bdbdbd", "#c9c9c9", "#d9d9d9", "#f2f2f2"] },
+      "paper": { "role": "neutral", "displayName": "Paper White", "canonical": "#ffffff", "tonalRamp": ["#1a1a1a", "#3b3b3b", "#626262", "#8c8c8c", "#b5b5b5", "#d9d9d9", "#f2f2f2", "#ffffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The one page headline." },
+      "numeral": { "displayName": "Step Numeral", "purpose": "Step numbers at the left of each build step; 4.5rem under 900px." },
+      "headline": { "displayName": "Headline", "purpose": "Section heads; the closing panel uses clamp(1.9rem, 3.6vw, 2.8rem)." },
+      "title": { "displayName": "Title", "purpose": "Step titles; panel titles at 1.3rem." },
+      "title-sm": { "displayName": "Call-out Title", "purpose": "Call-out titles with a right-set 1x count." },
+      "lede": { "displayName": "Lede", "purpose": "The single opening paragraph, max 34em." },
+      "body": { "displayName": "Body", "purpose": "Reading text; steps cap at 38em, section intros at 46em." },
+      "label": { "displayName": "Label", "purpose": "Uppercase table headers; inventory title at 0.95rem; piece captions in system sans 700 at 0.8rem." },
+      "code": { "displayName": "Code", "purpose": "Code in parts, wrapped, never scrolled; inline code at 0.88em." }
+    },
+    "fonts": [
+      { "family": "Archivo", "source": "demo/fonts/archivo-latin-wght-normal.woff2", "weights": "100 900", "licence": "SIL Open Font Licence (demo/fonts/ARCHIVO-OFL.txt)", "display": "swap" }
+    ],
+    "patterns": [
+      { "name": "stud-ruling", "value": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='2.3' fill='%23147bd1' fill-opacity='0.24'/%3E%3C/svg%3E\")", "size": "28px 28px", "purpose": "Stud grid on the diagram board; 22px on pieces." },
+      { "name": "stud-ruling-faint", "value": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='2.3' fill='%23147bd1' fill-opacity='0.15'/%3E%3C/svg%3E\")", "size": "28px 28px", "purpose": "Stud grid on the whole sheet (.sheet, not the saved element)." }
+    ],
+    "keyline": { "value": "2px solid #111111", "purpose": "Every piece, panel, step, button and the masthead rule." },
+    "shadows": [],
+    "motion": [
+      { "name": "layer-drop", "value": "transform 1.1s cubic-bezier(.16, 1, .3, 1); from translateY(-46px)", "purpose": "The one authored motion: the diagram's text layer drops onto the picture on first scroll into view. Rests in place by default; never armed under reduced motion or when already on screen at load; reset on pdfbot:start." },
+      { "name": "state-change", "value": "background-color .15s ease-out, transform .15s ease-out", "purpose": "Button and demo-tile hover; press moves down 1px." },
+      { "name": "smooth-scroll", "value": "scroll-behavior: smooth", "purpose": "In-page links; auto under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "single-column", "value": "900px", "purpose": "Below this every grid is one column, masthead nav hides, numerals drop to 4.5rem." }
+    ],
+    "states": {
+      "focus": "outline: 3px solid #147bd1; outline-offset: 3px; border-radius: 4px",
+      "selection": "background #ffcd00, text #111111",
+      "scrollbar": "scrollbar-color: #147bd1 #aee1ff",
+      "accent": "accent-color: #147bd1",
+      "busy": "aria-busy=true: opacity .75, cursor progress"
+    },
+    "pdfConstraints": [
+      "No tiled radial-gradients: html2canvas-pro does not draw them; use the SVG data-URI tile.",
+      "Put background patterns on an element inside the saved element; html2canvas skips the saved element's own background image.",
+      "No SVG <use> references inside the saved area; inline the paths.",
+      "No ::first-letter; it is not drawn.",
+      "No hyphens: auto; it is switched off in the PDF.",
+      "Nothing position: fixed or sticky inside the saved area.",
+      "Keep steps, panels, table rows and limits unsplit with break-inside: avoid.",
+      "Reset motion to its final state on pdfbot:start."
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The Save and Build it in actions.",
+      "html": "<button class=\"ds-btn ds-btn-go\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z M14 3v5h5 M9 13h6 M9 17h4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Save as PDF</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 10px; font: 700 1rem/1 system-ui, -apple-system, 'Segoe UI', sans-serif; padding: 14px 20px; border: 2px solid #111; border-radius: 10px; background: #fff; color: #111; cursor: pointer; transition: background-color .15s ease-out, transform .15s ease-out; } .ds-btn svg { width: 20px; height: 20px; flex: none; } .ds-btn-go { background: #147bd1; color: #fff; } .ds-btn-go:hover { background: #0f5fa3; color: #fff; } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 3px solid #147bd1; outline-offset: 3px; } .ds-btn[aria-busy='true'] { cursor: progress; opacity: .75; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Second action beside a primary one.",
+      "html": "<a class=\"ds-btn2\" href=\"#\">See how it works</a>",
+      "css": ".ds-btn2 { display: inline-flex; align-items: center; gap: 10px; font: 700 1rem/1 system-ui, -apple-system, 'Segoe UI', sans-serif; padding: 14px 20px; border: 2px solid #111; border-radius: 10px; background: #fff; color: #111; text-decoration: none; transition: background-color .15s ease-out, transform .15s ease-out; } .ds-btn2:hover { background: #ffcd00; } .ds-btn2:active { transform: translateY(1px); } .ds-btn2:focus-visible { outline: 3px solid #147bd1; outline-offset: 3px; }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "description": "Brick logo, wordmark, section links and Save, above the saved area.",
+      "html": "<header class=\"ds-mast\"><a class=\"ds-brand\" href=\"#\"><svg viewBox=\"0 0 48 48\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"42\" height=\"42\" rx=\"7\" fill=\"#e53935\" stroke=\"#111\" stroke-width=\"2.5\"/><circle cx=\"16\" cy=\"16\" r=\"6.5\" fill=\"#f15a56\" stroke=\"#111\" stroke-width=\"2.5\"/><circle cx=\"32\" cy=\"16\" r=\"6.5\" fill=\"#f15a56\" stroke=\"#111\" stroke-width=\"2.5\"/><circle cx=\"16\" cy=\"32\" r=\"6.5\" fill=\"#f15a56\" stroke=\"#111\" stroke-width=\"2.5\"/><circle cx=\"32\" cy=\"32\" r=\"6.5\" fill=\"#f15a56\" stroke=\"#111\" stroke-width=\"2.5\"/></svg>pdfbot</a><nav><a href=\"#\">How it works</a><a href=\"#\">Build it in</a><a href=\"#\">Limits</a></nav></header>",
+      "css": ".ds-mast { display: flex; align-items: center; gap: 28px; padding: 18px 28px; border-bottom: 2px solid #111; background: #aee1ff; } .ds-brand { display: flex; align-items: center; gap: 12px; color: #111; text-decoration: none; font: 800 1.5rem/1 Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-brand svg { width: 40px; height: 40px; } .ds-mast nav { display: flex; gap: 22px; margin-left: auto; font: 600 1rem system-ui, sans-serif; } .ds-mast nav a { color: #111; text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; } .ds-mast nav a:hover { border-bottom-color: #111; } .ds-mast a:focus-visible { outline: 3px solid #147bd1; outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Build Step",
+      "kind": "custom",
+      "refersTo": "step",
+      "description": "Numbered step: heavy numeral, text, and its part with a 1x count.",
+      "html": "<div class=\"ds-step\"><div class=\"ds-num\">2</div><div><h3>Add a button</h3><p>Any element with data-pdfbot becomes a save button.</p></div><figure class=\"ds-part\"><div class=\"ds-part-head\"><svg viewBox=\"0 0 37 36\" aria-hidden=\"true\"><path d=\"M32.6,21.0 L23.1,26.5 L23.1,31.5 L32.6,26.0 Z\" fill=\"#147bd1\"/><path d=\"M4.0,15.5 L23.1,26.5 L23.1,31.5 L4.0,20.5 Z\" fill=\"#0f5fa3\"/><path d=\"M13.5,10.0 L32.6,21.0 L23.1,26.5 L4.0,15.5 Z\" fill=\"#3f97e0\"/><path d=\"M13.5,10.0 L32.6,21.0 L32.6,26.0 L23.1,31.5 L4.0,20.5 L4.0,15.5 Z M23.1,26.5 L23.1,31.5 M23.1,26.5 L32.6,21.0 M23.1,26.5 L4.0,15.5\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\" stroke-linejoin=\"round\"/></svg><span>1x</span></div><pre>&lt;button <b>data-pdfbot</b>&gt;\n  Save as PDF\n&lt;/button&gt;</pre></figure></div>",
+      "css": ".ds-step { display: grid; grid-template-columns: 90px 1fr 1fr; gap: 24px; align-items: start; padding: 28px; background: #aee1ff; border: 2px solid #111; border-radius: 10px; font: 17px/1.6 system-ui, sans-serif; color: #111; } .ds-num { font: 900 5rem/0.78 Archivo, 'Helvetica Neue', Arial, sans-serif; letter-spacing: -0.04em; } .ds-step h3 { font: 800 1.55rem/1.05 Archivo, 'Helvetica Neue', Arial, sans-serif; margin: 4px 0 10px; } .ds-step p { margin: 0; } .ds-part { margin: 0; background: #fff; border: 2px solid #111; border-radius: 10px; padding: 12px 16px 14px; } .ds-part-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; } .ds-part-head svg { height: 34px; width: auto; } .ds-part-head span { font: 800 1.15rem/1 Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-part pre { margin: 0; font: .86rem/1.65 ui-monospace, Menlo, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; } .ds-part pre b { color: #c62828; }"
+    },
+    {
+      "name": "Inventory Box",
+      "kind": "card",
+      "description": "Pieces in this set: brick drawing, file name, description, count.",
+      "html": "<aside class=\"ds-inv\"><h2>Pieces in this set</h2><ul><li><span class=\"ds-chip ds-y\"></span><div><b>pdfbot.js</b><small>3 KB loader.</small></div><span class=\"ds-count\">1x</span></li><li><span class=\"ds-chip ds-r\"></span><div><b>pdfbot-engine.js</b><small>240 KB engine, fetched on first click.</small></div><span class=\"ds-count\">1x</span></li></ul></aside>",
+      "css": ".ds-inv { background: #fff; border: 2px solid #111; border-radius: 10px; padding: 20px 22px 14px; color: #111; font: 17px/1.6 system-ui, sans-serif; max-width: 340px; } .ds-inv h2 { font: 800 .95rem/1.05 Archivo, 'Helvetica Neue', Arial, sans-serif; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 8px; } .ds-inv ul { list-style: none; margin: 0; padding: 0; } .ds-inv li { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid #d9d9d9; } .ds-inv li:first-child { border-top: 0; } .ds-chip { width: 36px; height: 24px; border: 2px solid #111; border-radius: 6px; } .ds-y { background: #ffcd00; } .ds-r { background: #e53935; } .ds-inv b { display: block; font: .92rem ui-monospace, Menlo, monospace; } .ds-inv small { display: block; color: #1d3a52; font-size: .85rem; line-height: 1.35; } .ds-count { font: 800 1.15rem/1 Archivo, 'Helvetica Neue', Arial, sans-serif; }"
+    },
+    {
+      "name": "Call-out",
+      "kind": "card",
+      "refersTo": "callout",
+      "description": "Labels one layer of the exploded diagram with its count.",
+      "html": "<div class=\"ds-callout\"><h3>Text layer <span>1x</span></h3><p>The page's real words, each placed to the box it has on screen.</p></div>",
+      "css": ".ds-callout { background: #fff; border: 2px solid #111; border-radius: 10px; padding: 14px 16px; color: #111; font: 17px/1.6 system-ui, sans-serif; } .ds-callout h3 { display: flex; justify-content: space-between; gap: 10px; margin: 0 0 4px; font: 800 1.05rem/1.05 Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-callout p { margin: 0; font-size: .95rem; line-height: 1.5; }"
+    },
+    {
+      "name": "Demo Tile",
+      "kind": "card",
+      "refersTo": "demo-tile-hover",
+      "description": "Linked panel to another demo; sky at rest, yellow on hover.",
+      "html": "<a class=\"ds-tile\" href=\"#\"><b>Reading report</b><span>Sixty table rows over many sheets.</span></a>",
+      "css": ".ds-tile { display: block; background: #aee1ff; color: #111; text-decoration: none; border: 2px solid #111; border-radius: 10px; padding: 22px 24px; font: 17px/1.6 system-ui, sans-serif; transition: background-color .15s ease-out; max-width: 330px; } .ds-tile:hover { background: #ffcd00; } .ds-tile:focus-visible { outline: 3px solid #147bd1; outline-offset: 3px; } .ds-tile b { display: block; font: 800 1.2rem/1.2 Archivo, 'Helvetica Neue', Arial, sans-serif; margin-bottom: 6px; } .ds-tile span { font-size: .95rem; }"
+    },
+    {
+      "name": "Stud Board",
+      "kind": "custom",
+      "refersTo": "diagram-board",
+      "description": "Deep-sky board ruled with the stud tile, behind the exploded diagram.",
+      "html": "<div class=\"ds-board\"><div class=\"ds-callout2\">Picture <b>1x</b></div></div>",
+      "css": ".ds-board { background: #93d3f7 url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='2.3' fill='%23147bd1' fill-opacity='0.24'/%3E%3C/svg%3E\") 0 0 / 28px 28px; border: 2px solid #111; border-radius: 10px; padding: 28px; min-height: 140px; } .ds-callout2 { display: inline-flex; gap: 12px; background: #fff; border: 2px solid #111; border-radius: 10px; padding: 14px 16px; font: 800 1.05rem Archivo, 'Helvetica Neue', Arial, sans-serif; color: #111; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Build-Instruction Booklet",
+    "overview": "The page reads like the instruction booklet in a box of plastic bricks. Sky-blue paper ruled with a faint stud grid carries every piece; each piece, panel and drawing is outlined with the same 2px ink keyline and the same 10px corner. The mechanism is shown as an exploded diagram of one PDF page (paper, picture, text layer dropping onto it), and adoption is shown as numbered build steps, each with its part beside it and a \"1x\" count, the way a booklet lists the pieces a step uses.\n\nColour is assigned by job, as in a booklet: brick red marks the new piece, build yellow marks inventory and the hover state, accent blue marks actions and the text layer, plate grey marks what is already built. Type is a heavy grotesk (Archivo) for numerals and headings over a plain system sans for reading. Depth comes only from drawing: isometric bricks with lit tops and shaded sides. Nothing on the page casts a shadow.\n\nThe page must survive being saved by the thing it explains, so the system is also bound by what html2canvas-pro and the pdfbot text layer can reproduce (the PDF limits are listed in Do's and Don'ts).",
+    "keyCharacteristics": [
+      "Sky-blue paper ruled by a 28px stud grid, drawn as an SVG data-URI tile.",
+      "One keyline (2px solid ink) and one corner (10px) on every piece.",
+      "Colour by job: brick red new, yellow inventory and hover, blue action, plate grey built.",
+      "Huge Archivo step numerals (weight 900) beside each step.",
+      "Isometric brick drawings with studs as the only depth.",
+      "A \"1x\" piece count on every part and call-out."
+    ],
+    "rules": [
+      { "name": "The Colour Has A Job Rule", "body": "Each working colour means one thing: red is the new piece, yellow is inventory or hover, blue is an action or the text layer, grey is already built. A colour used outside its job is a bug.", "section": "colors" },
+      { "name": "The Two Sky Rule", "body": "Surfaces are sky (paper, steps) or white (pieces that hold reading). Deep sky is reserved for the one diagram board.", "section": "colors" },
+      { "name": "The Heavy Numeral Rule", "body": "Numbers that count something (step numbers, \"1x\" piece counts) are set in Archivo at 800 or more. Reading text never is.", "section": "typography" },
+      { "name": "The Wrap Not Scroll Rule", "body": "Code wraps (white-space: pre-wrap, overflow-wrap: anywhere) so every character lands on the paper and in the text layer; no horizontal scrollers.", "section": "typography" },
+      { "name": "The Stud Pitch Rule", "body": "Vertical rhythm is counted in studs (28px). New spacing is a multiple or a clean fraction of the pitch.", "section": "layout" },
+      { "name": "The Drawn Depth Rule", "body": "Things look solid because they are drawn as bricks, never because a shadow sits under a box.", "section": "elevation" },
+      { "name": "The One Keyline Rule", "body": "Every piece wears 2px solid ink and a 10px corner. A box without the keyline is not a piece and should not look like one.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do put every piece on the sky paper with the stud ruling, a 2px ink keyline and a 10px corner.",
+      "Do give each working colour one job: red new, yellow inventory and hover, blue action, grey built.",
+      "Do show depth by drawing isometric bricks with lit tops, shaded sides and studs.",
+      "Do count spacing in 28px studs: one pitch inside and between steps, three between sections.",
+      "Do pair a step with its part and a \"1x\" count, and keep each step and panel unsplit (break-inside: avoid).",
+      "Do draw the stud ruling as an SVG data-URI tile on the element inside the saved area (.sheet), not on the saved element itself.",
+      "Do keep icons as drawn inline SVG, and inline the paths of any icon inside the saved area.",
+      "Do keep the masthead and on-page action buttons out of the PDF with data-pdfbot-ignore.",
+      "Do reset any motion to its final state before a save, and skip it under reduced motion."
+    ],
+    "donts": [
+      "Don't add box shadows, hard or soft; depth is drawn.",
+      "Don't draw the stud ruling or any tiled pattern with a repeating radial-gradient; html2canvas-pro does not draw tiled radial gradients and the PDF loses the ruling.",
+      "Don't use SVG <use> references inside the saved area; inline the shape instead.",
+      "Don't use ::first-letter for drop caps; it is not drawn in the PDF.",
+      "Don't use hyphens: auto; pdfbot switches it off in the PDF, so lines break differently from the screen.",
+      "Don't put position: fixed or position: sticky elements inside the saved area.",
+      "Don't let code scroll sideways; wrap it.",
+      "Don't set reading text in Archivo, or headings in the system sans.",
+      "Don't bring the styles of the fixture demos (report, dashboard, article, invoice, worksheet) into this system, or this system into them."
+    ]
+  }
+}
