@@ -16,7 +16,9 @@
     if (script && script.getAttribute('data-pdfbot-engine')) {
       return script.getAttribute('data-pdfbot-engine');
     }
-    if (script && script.src) return new URL('pdfbot-engine.js', script.src).href;
+    // The version in the URL means a cached engine from an older release is
+    // never paired with this loader.
+    if (script && script.src) return new URL('pdfbot-engine.js?v=' + VERSION, script.src).href;
     throw new Error('pdfbot: cannot find pdfbot-engine.js; set data-pdfbot-engine on the script tag');
   }
 

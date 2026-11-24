@@ -52,6 +52,15 @@ pick up a new version by copying `dist/` again.
 
 ## 5. Version history (what & why)
 
+### 2026-11-24 — 0.3.3 — Versioned file links
+
+After 0.3.2 went live, Sev's browser still ran 0.3.1: GitHub Pages sends
+`cache-control: max-age=600`, so browsers reuse files for up to 10 minutes. The loader
+now fetches `pdfbot-engine.js?v=<version>`, so a cached engine from another release is
+never paired with it, and `npm run build` stamps `?v=<version>` onto the demo pages'
+link to `pdfbot.js`. A demo page itself can still be up to 10 minutes stale; a hard
+reload (Cmd+Shift+R) skips that.
+
 ### 2026-11-24 — 0.3.2 — Text selectable again in Preview and on iOS
 
 Sev could not select text in PDFs from the demos. Since 0.3.0 the text layer's
