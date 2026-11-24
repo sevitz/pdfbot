@@ -52,6 +52,15 @@ pick up a new version by copying `dist/` again.
 
 ## 5. Version history (what & why)
 
+### 2026-11-24 — 0.3.5 — Breathing room in the report chart
+
+The bar chart in `demo/report.html` had its "Week 12" label about 12 units from the
+right border and its baselines 10 units from the bottom. The viewBox now runs from
+`-16 -16` at `792 x 292`, with the background rect enlarged to match, so there is a
+16 unit margin inside the border without moving any bar. The impeccable detector still
+reads the full bleed background rect as flush content, so that one finding is ignored
+for this file in `.impeccable/config.json`.
+
 ### 2026-11-24 — 0.3.4 — Favicon for the demo pages
 
 The demo pages on GitHub Pages had no favicon, so browsers showed a blank tab icon and

@@ -38,6 +38,15 @@
         ],
         "createdAt": "2026-11-24T02:55:15.004Z",
         "reason": "Claude decided: demo/ pages are test fixtures that deliberately imitate common real-world page styles so pdfbot is tested against what apps actually look like"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "demo/report.html"
+        ],
+        "createdAt": "2026-11-24T03:17:32.626Z",
+        "reason": "Claude: chart SVG now has a 16-unit inner margin via its viewBox (labels measured 24px+ from the border in the browser); the detector reads the full-bleed background rect as flush content"
       }
     ]
   }
